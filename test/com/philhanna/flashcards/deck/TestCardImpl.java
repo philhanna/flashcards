@@ -1,20 +1,12 @@
 package com.philhanna.flashcards.deck;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.*;
 
 import com.philhanna.flashcards.Card;
 
-public class TestCardImpl {
-
-   @Before
-   public void setUp() throws Exception {
-   }
-
-   @After
-   public void tearDown() throws Exception {
-   }
+public class TestCardImpl extends BaseTest {
 
    @Test
    public void testToggle() {
