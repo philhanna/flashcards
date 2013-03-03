@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cards>
+   <title>NBA All-Stars</title>
+
+   <card>
+      <question>
+         Center, UCLA. During his career with the NBA's Milwaukee Bucks and Los
+         Angeles Lakers from 1969 to 1989, he scored more points than any other
+         player in league history and won a record six MVP Awards and six NBA
+         championships.
+      </question>
+      <answer>Kareem Abdul-Jabbar</answer>
+   </card>
+
+   <card>
+      <question>
+         Center, LSU. 7' 1", 325 pounds. Drafted by the Orlando Magic
+         with the first overall pick of the 1992 NBA draft.  Rookie of the year
+         in 1992-93.  Later played for the LA Lakers, Miami Head, Phoenix Suns,
+         and Cleveland Cavaliers.
+      </question>
+      <answer>Shaquille O'Neal</answer>
+   </card>
+
+   <card>
+      <question>
+         Shooting guard, UNC Chapel Hill.  Abruptly retired from
+         basketball at the beginning of the 1993-94 NBA season to pursue a
+         career in baseball. Rejoined the Chicago Bulls in 1995 and led them to
+         three additional championships
+      </question>
+      <answer>Michael Jordan</answer>
+   </card>
+
+   <card>
+      <question>
+         Power forward, Louisiana Tech. Played 18 seasons as the star player of
+         the Utah Jazz.
+      </question>
+      <answer>Karl Malone</answer>
+   </card>
+
+   <card>
+      <question>
+         Guard, West Virginia. Nicknames "Mr. Clutch" and "The Logo".  Played
+         entire career with the LA Lakers.  Later Head Coach and General
+         Manager of the Lakers.
+      </question>
+      <answer>Jerry West</answer>
+   </card>
+
+   <card>
+      <question>
+         Center, Kansas. 7' 1", 300 lb.  Started pro career with the Harlem
+         Globetrotters, later played with Philadelpha Warriors, 76ers, and LA
+         Lakers.  First player to score 100 points in an NBA game.
+      </question>
+      <answer>Wilt Chamberlain</answer>
+   </card>
+
+   <card>
+      <question>
+         Point guard, Holy Cross. Boston Celtics (1950-1963).
+      </question>
+      <answer>Bob Cousy</answer>
+   </card>
+
+   <card>
+      <question>
+         Power forward, first player since 1975 to be drafted directly out of
+         high school.  Minnesota Timberwolves (1995-2007), Boston Celtics
+         (2007-present).
+      </question>
+      <answer>Kevin Garnett</answer>
+   </card>
+
+   <card>
+      <question>
+         Forward/Guard, Ohio State.  Drafted by Boston Celtics 1962, played his
+         entire 16-year career there.  Immortalized for his clutch steal in the
+         closing seconds of the 1965 Eastern Conference championship against the
+         Philadelphia 76ers
+      </question>
+      <answer>John Havlicek</answer>
+   </card>
+
+   <card>
+      <question>
+         Small forward, power forward, Indiana State. Rival of Magic Johnson.
+         Played entire career with the Boston Celtics (1979-1992).  Head coach
+         of the Indiana Pacers from 1997 to 2000.
+      </question>
+      <answer>Larry Bird</answer>
+   </card>
+
+   <card>
+      <question>
+         Shooting guard.  LA Lakers (1996-present).  All-time leading scorer in
+         Lakers history. Spent childhood years in Italy where his father played
+         professional basketball.
+      </question>
+      <answer>Kobe Bryant</answer>
+   </card>
+
+   <card>
+      <question>
+         Power forward, Wake Forest.  From U. S. Virgin Islands. Pro career San
+         Antonio Spurs (1997-present)
+      </question>
+      <answer>Tim Duncan</answer>
+   </card>
+
+   <card>
+      <question>
+         Guard, Georgetown. 1996 1st round draft pick. Philadelphia 76ers (1996-present)
+      </question>
+      <answer>Allen Iverson</answer>
+   </card>
+
+   <card>
+      <question>
+         Center, San Francisco.  Boston Celtics (1956-1969).  Longtime rival of
+         Wilt Chamberlain.
+      </question>
+      <answer>Bill Russell</answer>
+   </card>
+
+   <card>
+      <question>
+         Power forward, Auburn. Philadelphia 76ers (1984-1992), then 4 years
+         each with the Phoenix Suns and the Houston Rockets.  Throughout his
+         career, argued that professional athletes should not be considered
+         role models. Has considered running for Governor of Alabama.
+      </question>
+      <answer>Charles Barkley</answer>
+   </card>
+
+   <card>
+      <question>
+         Center, Georgetown.  From Kingston, Jamaica. 15 year career with the
+         NY Knicks.  Now head coach of the Orlando Magic.
+      </question>
+      <answer>Patrick Ewing</answer>
+   </card>
+
+</cards>

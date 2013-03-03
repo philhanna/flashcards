@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<cards>
+   <title>Works by Jane Austen</title>
+   <card>
+      <question>
+         Rich Mr. Dashwood dies, leaving his second wife and her daughters poor
+         by the rules of inheritance
+      </question>
+      <answer>Sense and Sensibility</answer>
+   </card>
+   <card>
+      <question>
+         Mr. and Mrs. Bennet have five unmarried daughters, and Mrs. Bennet is
+         especially eager to find suitable husbands for them. When the rich
+         single gentlemen Mr. Bingley and Mr. Darcy come to live nearby, the
+         Bennets have high hopes. But class differences and misunderstandings
+         combine to complicate their relationships and to make happiness
+         difficult.
+      </question>
+      <answer>Pride and Prejudice</answer>
+   </card>
+   <card>
+      <question>
+         At age 10, Fanny Price is sent by her destitute mother to live with
+         her aunt and uncle.  Her love for her cousin a prevents her from
+         accepting a proposal of marriage. 
+      </question>
+      <answer>Mansfield Park</answer>
+   </card>
+   <card>
+      <question>
+         A young woman has a rigid sense of propriety as regards matrimonial
+         alliances. Unfortunately she insists on matchmaking for her less
+         forceful friend, and so causes her to come to grief.
+      </question>
+      <answer>Emma</answer>
+   </card>
+   <card>
+      <question>
+         Catherine Morland, staying with a childless family, is hoping for an
+         adventure of the type she has been reading in novels.  Invited to
+         visit an estate of a handsome young man, she has thoughts of romance
+         but soon learns that status, class and money are all equally important
+         when it comes to matters of the heart.
+      </question>
+      <answer>Northanger Abbey</answer>
+   </card>
+   <card>
+      <question>
+         A young woman breaks off her engagement with a poor naval officer at
+         the insistence of her family.  Meeting him later in life, they are
+         reconciled.
+      </question>
+      <answer>Persuasion</answer>
+   </card>
+</cards>
