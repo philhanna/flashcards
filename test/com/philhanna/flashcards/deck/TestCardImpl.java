@@ -9,7 +9,7 @@ import com.philhanna.flashcards.Card;
 public class TestCardImpl extends BaseTest {
 
    @Test
-   public void testToggle() {
+   public void toggleSwitchesQuestionAndAnswer() {
       Card card = new CardImpl("111", "222");
       card.toggle();
       assertEquals("Question is unexpected", "222", card.getQuestion());

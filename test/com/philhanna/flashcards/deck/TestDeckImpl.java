@@ -16,18 +16,19 @@ import com.philhanna.flashcards.*;
 public class TestDeckImpl extends BaseTest {
 
    private static Document doc;
+   private static DocumentBuilder db;
 
    @BeforeClass
    public static void setUpBeforeClass() throws Exception {
       BaseTest.setUpBeforeClass();
       final File inputFile = new File(testdata, "Best_Picture_Awards.flc");
       final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-      final DocumentBuilder db = dbf.newDocumentBuilder();
+      db = dbf.newDocumentBuilder();
       doc = db.parse(inputFile);
    }
 
    @Test
-   public void testGetCardsFromXML() throws SAXException, ApplicationException {
+   public void getsCardsFromXML() throws SAXException, ApplicationException {
       List<Card> cardList = DeckImpl.getCardsFromXML(doc);
       assertNotNull(cardList);
       assertEquals("1928", cardList.get(0).getQuestion());
@@ -44,14 +45,14 @@ public class TestDeckImpl extends BaseTest {
    }
 
    @Test
-   public void testGetTitleFromXML() throws SAXException {
+   public void getsTitleFromXML() throws SAXException {
       final String expected = "Academy Award-winning Best Pictures";
       final String actual = DeckImpl.getTitleFromXML(doc);
       assertEquals(expected, actual);
    }
 
    @Test
-   public void testGetCards() throws SAXException, ApplicationException {
+   public void getsCards() throws SAXException, ApplicationException {
       final Deck deck = new DeckImpl(doc);
       final List<Card> cardList = deck.getCards();
       final Card firstCard = cardList.get(0);
@@ -61,7 +62,19 @@ public class TestDeckImpl extends BaseTest {
    }
 
    @Test
-   public void testGetTitle() throws SAXException, ApplicationException {
+   public void recognizesEmptyDeck() throws Exception {
+      Document emptyDoc = db.newDocument();
+      try {
+         new DeckImpl(emptyDoc);
+         fail("Should have thrown EmptyDeckException");
+      }
+      catch (EmptyDeckException e) {
+         // This is the expected behavior
+      }
+   }
+
+   @Test
+   public void getsTitle() throws SAXException, ApplicationException {
       final Deck deck = new DeckImpl(doc);
       final String expected = "Academy Award-winning Best Pictures";
       final String actual = deck.getTitle();
@@ -69,18 +82,18 @@ public class TestDeckImpl extends BaseTest {
    }
 
    @Test
-   public void testToggle() throws SAXException, ApplicationException {
+   public void togglesEntireDeck() throws SAXException, ApplicationException {
       final Deck deck = new DeckImpl(doc);
       final List<Card> cardList = deck.getCards();
       final Card firstCard = cardList.get(0);
-      
+
       // Toggle every card in the deck
-      
+
       deck.toggle();
       assertEquals("Wings", firstCard.getQuestion());
 
       // Now toggle back and see if the card has been flipped
-      
+
       deck.toggle();
       assertEquals("1928", firstCard.getQuestion());
    }
