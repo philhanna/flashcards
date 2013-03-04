@@ -8,22 +8,24 @@ import java.util.List;
 import javax.xml.parsers.*;
 
 import org.junit.*;
-import org.w3c.dom.Document;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import com.philhanna.flashcards.*;
 
 public class TestDeckImpl extends BaseTest {
 
-   private static Document doc;
+   private static DocumentBuilderFactory dbf;
    private static DocumentBuilder db;
+   private static File inputFile;
+   private static Document doc;
 
    @BeforeClass
    public static void setUpBeforeClass() throws Exception {
       BaseTest.setUpBeforeClass();
-      final File inputFile = new File(testdata, "Best_Picture_Awards.flc");
-      final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+      dbf = DocumentBuilderFactory.newInstance();
       db = dbf.newDocumentBuilder();
+      inputFile = new File(testdata, "Best_Picture_Awards.flc");
       doc = db.parse(inputFile);
    }
 
@@ -62,7 +64,7 @@ public class TestDeckImpl extends BaseTest {
    }
 
    @Test
-   public void recognizesEmptyDeck() throws Exception {
+   public void throwsExceptionForEmptyDeck() throws Exception {
       Document emptyDoc = db.newDocument();
       try {
          new DeckImpl(emptyDoc);
@@ -70,6 +72,44 @@ public class TestDeckImpl extends BaseTest {
       }
       catch (EmptyDeckException e) {
          // This is the expected behavior
+      }
+   }
+
+   private static final Document reloadDocument() throws SAXException, IOException {
+      return db.parse(inputFile);
+   }
+   
+   @Test
+   public void throwsExceptionForMissingQuestion() throws SAXException, IOException {
+      final Document doc = reloadDocument();
+      final Element elemCard = (Element) doc.getElementsByTagName("card").item(2);
+      final Element elemQuestion = (Element) elemCard.getElementsByTagName("question").item(0);
+      elemCard.removeChild(elemQuestion);
+      try {
+         new DeckImpl(doc);
+         fail("Should have thrown InvalidCardException");
+      }
+      catch (ApplicationException e) {
+         final String expected = "No question found on card 3 in deck";
+         final String actual = e.getMessage();
+         assertEquals(expected, actual);
+      }
+   }
+   
+   @Test
+   public void throwsExceptionForMissingAnswer() throws SAXException, IOException {
+      final Document doc = reloadDocument();
+      final Element elemCard = (Element) doc.getElementsByTagName("card").item(2);
+      final Element elemAnswer = (Element) elemCard.getElementsByTagName("answer").item(0);
+      elemCard.removeChild(elemAnswer);
+      try {
+         new DeckImpl(doc);
+         fail("Should have thrown InvalidCardException");
+      }
+      catch (ApplicationException e) {
+         final String expected = "No answer found on card 3 in deck";
+         final String actual = e.getMessage();
+         assertEquals(expected, actual);
       }
    }
 
