@@ -92,4 +92,31 @@ public class TestSessionCardImpl extends BaseTest {
       assertEquals(2, card.getStatistics().getTimesAnsweredWrong());
    }
 
+   @Test
+   public void testMarkRightAfterWrong() {
+
+      // Should be clear first time
+
+      assertEquals(CardHistory.NEVER_ANSWERED, card.getStatistics().getHistory());
+      assertEquals(0, card.getStatistics().getTimesAnsweredRight());
+      assertEquals(0, card.getStatistics().getTimesAnsweredWrong());
+
+      // After marking wrong, should be in the "ANSWERED_WRONG" state
+      // and the historical counts should be updated
+
+      card.markWrong();
+      assertEquals(CardHistory.ANSWERED_WRONG, card.getStatistics().getHistory());
+      assertEquals(0, card.getStatistics().getTimesAnsweredRight());
+      assertEquals(1, card.getStatistics().getTimesAnsweredWrong());
+
+      // After marking right, should still be in the
+      // "ANSWERED_RIGHT" state and the historical counts should be
+      // updated
+
+      card.markRight();
+      assertEquals(CardHistory.ANSWERED_RIGHT, card.getStatistics().getHistory());
+      assertEquals(1, card.getStatistics().getTimesAnsweredRight());
+      assertEquals(1, card.getStatistics().getTimesAnsweredWrong());
+   }
+
 }
