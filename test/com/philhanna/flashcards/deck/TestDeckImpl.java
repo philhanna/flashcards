@@ -23,10 +23,10 @@ public class TestDeckImpl extends BaseTest {
 
    @BeforeClass
    public static void setUpBeforeClass() throws Exception {
-      BaseTest.setUpBeforeClass();
       if (!firstTime)
          return;
       firstTime = false;
+      BaseTest.setUpBeforeClass();
       dbf = DocumentBuilderFactory.newInstance();
       db = dbf.newDocumentBuilder();
       inputFile = new File(testdata, "Best_Picture_Awards.flc");
