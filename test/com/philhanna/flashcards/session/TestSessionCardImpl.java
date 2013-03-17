@@ -29,22 +29,67 @@ public class TestSessionCardImpl extends BaseTest {
    public void getStatisticsAlwaysReturnsNonNull() {
       assertNotNull(card.getStatistics());
    }
-   
+
    @Test
    public void getHistoryIsClearFirstTime() {
       CardStatistics cs = card.getStatistics();
       CardHistory ch = cs.getHistory();
       assertNotNull(ch);
+      assertEquals(CardHistory.NEVER_ANSWERED, ch);
    }
 
    @Test
    public void testMarkRight() {
-      fail("Not yet implemented");
+
+      // Should be clear first time
+
+      assertEquals(CardHistory.NEVER_ANSWERED, card.getStatistics().getHistory());
+      assertEquals(0, card.getStatistics().getTimesAnsweredRight());
+      assertEquals(0, card.getStatistics().getTimesAnsweredWrong());
+
+      // After marking right, should be in the "ANSWERED_RIGHT" state
+      // and the historical counts should be updated
+
+      card.markRight();
+      assertEquals(CardHistory.ANSWERED_RIGHT, card.getStatistics().getHistory());
+      assertEquals(1, card.getStatistics().getTimesAnsweredRight());
+      assertEquals(0, card.getStatistics().getTimesAnsweredWrong());
+
+      // After marking right a second time, should still be in the
+      // "ANSWERED_RIGHT" state and the historical counts should be
+      // updated
+
+      card.markRight();
+      assertEquals(CardHistory.ANSWERED_RIGHT, card.getStatistics().getHistory());
+      assertEquals(2, card.getStatistics().getTimesAnsweredRight());
+      assertEquals(0, card.getStatistics().getTimesAnsweredWrong());
    }
 
    @Test
    public void testMarkWrong() {
-      fail("Not yet implemented");
+
+      // Should be clear first time
+
+      assertEquals(CardHistory.NEVER_ANSWERED, card.getStatistics().getHistory());
+      assertEquals(0, card.getStatistics().getTimesAnsweredRight());
+      assertEquals(0, card.getStatistics().getTimesAnsweredWrong());
+
+      // After marking wrong, should be in the "ANSWERED_WRONG" state
+      // and the historical counts should be updated
+
+      card.markWrong();
+      assertEquals(CardHistory.ANSWERED_WRONG, card.getStatistics().getHistory());
+      assertEquals(0, card.getStatistics().getTimesAnsweredRight());
+      assertEquals(1, card.getStatistics().getTimesAnsweredWrong());
+
+      // After marking wrong a second time, should still be in the
+      // "ANSWERED_WRONG" state and the historical counts should be
+      // updated
+
+      card.markWrong();
+      assertEquals(CardHistory.ANSWERED_WRONG, card.getStatistics().getHistory());
+      assertEquals(0, card.getStatistics().getTimesAnsweredRight());
+      assertEquals(2, card.getStatistics().getTimesAnsweredWrong());
    }
 
 }
