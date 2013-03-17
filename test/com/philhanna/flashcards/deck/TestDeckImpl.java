@@ -15,6 +15,7 @@ import com.philhanna.flashcards.*;
 
 public class TestDeckImpl extends BaseTest {
 
+   private static boolean firstTime = true;
    private static DocumentBuilderFactory dbf;
    private static DocumentBuilder db;
    private static File inputFile;
@@ -23,6 +24,9 @@ public class TestDeckImpl extends BaseTest {
    @BeforeClass
    public static void setUpBeforeClass() throws Exception {
       BaseTest.setUpBeforeClass();
+      if (!firstTime)
+         return;
+      firstTime = false;
       dbf = DocumentBuilderFactory.newInstance();
       db = dbf.newDocumentBuilder();
       inputFile = new File(testdata, "Best_Picture_Awards.flc");
