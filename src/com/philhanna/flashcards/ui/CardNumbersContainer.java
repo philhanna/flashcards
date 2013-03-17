@@ -1,7 +1,6 @@
 package com.philhanna.flashcards.ui;
 
-import com.philhanna.flashcards.Session;
-import com.philhanna.flashcards.session.SessionCursor;
+import com.philhanna.flashcards.session.*;
 import com.philhanna.flashcards.ui.events.CardChangeEvent;
 import com.philhanna.flashcards.ui.events.CardChangeListener;
 import com.philhanna.flashcards.ui.events.SessionStateChangeEvent;

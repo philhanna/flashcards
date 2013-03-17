@@ -8,8 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.philhanna.flashcards.CardStatistics;
-import com.philhanna.flashcards.Session;
-import com.philhanna.flashcards.session.SessionCard;
+import com.philhanna.flashcards.session.*;
 
 /**
  * A container for the session statistics,

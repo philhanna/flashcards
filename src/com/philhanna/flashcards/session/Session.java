@@ -1,9 +1,7 @@
-package com.philhanna.flashcards;
+package com.philhanna.flashcards.session;
 
 import java.util.List;
 
-import com.philhanna.flashcards.session.SessionCard;
-import com.philhanna.flashcards.session.SessionCursor;
 
 /**
  * One pass through the deck. Has methods that keep track of the current
