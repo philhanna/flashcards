@@ -1,17 +1,14 @@
 package com.philhanna.flashcards.session;
 
-import com.philhanna.flashcards.Card;
-import com.philhanna.flashcards.CardHistory;
-import com.philhanna.flashcards.CardStatistics;
+import com.philhanna.flashcards.*;
 import com.philhanna.flashcards.deck.CardImpl;
 
 /**
- * An implementation of the <code>SessionCard</code> interface that combines the
- * card functions (get question, get answer, toggle) with the statistics-keeping
- * required for a session.
+ * An implementation of the <code>SessionCard</code> interface that
+ * combines the card functions (get question, get answer, toggle) with
+ * the statistics-keeping required for a session.
  */
-public class SessionCardImpl extends CardImpl implements
-      SessionCard {
+public class SessionCardImpl extends CardImpl implements SessionCard {
 
    // ==========================================================
    // Instance variables
@@ -45,8 +42,8 @@ public class SessionCardImpl extends CardImpl implements
 
    /**
     * Creates a new default session card implementation, delegating the
-    * implementation of the card interface methods to a card object passed as a
-    * parameter.
+    * implementation of the card interface methods to a card object
+    * passed as a parameter.
     * @param card the card it contains
     */
    public SessionCardImpl(Card card) {

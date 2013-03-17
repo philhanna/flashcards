@@ -1,9 +1,12 @@
-package com.philhanna.flashcards.deck;
+package com.philhanna.flashcards;
 
 import java.io.File;
 
 import org.junit.BeforeClass;
 
+/**
+ * Abstract base class for all unit tests
+ */
 public abstract class BaseTest {
 
    private static boolean firstTime = true;

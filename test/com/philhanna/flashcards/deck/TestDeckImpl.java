@@ -82,7 +82,7 @@ public class TestDeckImpl extends BaseTest {
    private static final Document reloadDocument() throws SAXException, IOException {
       return db.parse(inputFile);
    }
-   
+
    @Test
    public void throwsExceptionForMissingQuestion() throws SAXException, IOException {
       final Document doc = reloadDocument();
@@ -99,7 +99,7 @@ public class TestDeckImpl extends BaseTest {
          assertEquals(expected, actual);
       }
    }
-   
+
    @Test
    public void throwsExceptionForMissingAnswer() throws SAXException, IOException {
       final Document doc = reloadDocument();

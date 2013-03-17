@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.*;
 
-import com.philhanna.flashcards.Card;
+import com.philhanna.flashcards.*;
 
 public class TestCardImpl extends BaseTest {
 
