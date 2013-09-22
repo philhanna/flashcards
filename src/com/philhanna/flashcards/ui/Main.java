@@ -18,6 +18,7 @@ import com.philhanna.flashcards.ui.menus.MenuBarContainer;
  * frame and populates its menu bar and listeners. When a file is chosen from
  * the <code>File-&gt;Open</code> menu option , the program creates and starts a
  * <code>SessionContainer</code> for the file.
+ * 
  * @see OpenDialogHandler
  * @see SessionContainer
  */
@@ -28,7 +29,7 @@ public class Main {
    // ==========================================================
 
    public static final String VERSION = "2.1.1";
-   
+
    // ==========================================================
    // Class methods
    // ==========================================================
@@ -105,6 +106,7 @@ public class Main {
 
    /**
     * Starts a new session with the specified file
+    * 
     * @param file the file
     * @param toggle true if deck should be turned over
     */
@@ -157,6 +159,7 @@ public class Main {
 
    /**
     * Displays the specified error message in a message box
+    * 
     * @param message the error message
     */
    public void displayErrorMessage(String message) {
@@ -202,7 +205,9 @@ public class Main {
     * Invokes an editor on the current file
     */
    public void doEdit() {
-      String[] cmd = { Configuration.TEXT_EDITOR, file.toString() };
+      String[] cmd = {
+            Configuration.TEXT_EDITOR, file.toString()
+      };
       try {
          Runtime.getRuntime().exec(cmd);
       }
@@ -227,6 +232,7 @@ public class Main {
    /**
     * Switches the card display mode from showing the question to showing the
     * answer, and vice versa.
+    * 
     * @param toggle if true, toggles the file
     */
    public void doToggle(boolean toggle) {
@@ -239,25 +245,27 @@ public class Main {
    public void doHelpAbout() {
       final String title = "About Flashcards";
       final Component message = createHelpAboutMessage();
-      final URL iconURL = getClass().getResource(Configuration.CARD_ICON_FILE_NAME);
+      final URL iconURL = getClass().getResource(
+            Configuration.CARD_ICON_FILE_NAME);
       final Icon icon = new ImageIcon(iconURL);
       final int type = JOptionPane.INFORMATION_MESSAGE;
       JOptionPane.showMessageDialog(this.frame, message, title, type, icon);
    }
 
    private Component createHelpAboutMessage() {
-      
+
       Font baseFont = frame.getFont();
-      
+
       JPanel panel = new JPanel();
       panel.setLayout(new GridLayout(3, 1, 0, 10));
-      
+
       JPanel pnl1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
       JLabel lbl1 = new JLabel("Flashcards " + VERSION);
-      lbl1.setFont(new Font(baseFont.getName(), baseFont.getStyle(), (int)(baseFont.getSize() * 1.5)));
+      lbl1.setFont(new Font(baseFont.getName(), baseFont.getStyle(),
+            (int) (baseFont.getSize() * 1.5)));
       pnl1.add(lbl1);
       panel.add(pnl1);
-      
+
       JPanel pnl2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
       JLabel lbl2 = new JLabel("A computer-based flash cards program");
       pnl2.add(lbl2);
@@ -265,7 +273,8 @@ public class Main {
 
       JPanel pnl3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
       JLabel lbl3 = new JLabel("Phil Hanna - ph1204@gmail.com");
-      lbl3.setFont(new Font(baseFont.getName(), baseFont.getStyle(), (int)(baseFont.getSize() * 0.85)));
+      lbl3.setFont(new Font(baseFont.getName(), baseFont.getStyle(),
+            (int) (baseFont.getSize() * 0.85)));
       pnl3.add(lbl3);
       panel.add(pnl3);
 
@@ -274,6 +283,7 @@ public class Main {
 
    /**
     * Returns the current file
+    * 
     * @return the file
     */
    public File getFile() {
@@ -335,8 +345,8 @@ public class Main {
     */
    public int getLastHeight() {
       final Preferences node = Preferences.userNodeForPackage(Main.class);
-      final String heightString = node.get("height", String
-            .valueOf(Configuration.HEIGHT));
+      final String heightString = node.get("height",
+            String.valueOf(Configuration.HEIGHT));
       final int height = Integer.parseInt(heightString);
       return height;
    }
@@ -346,8 +356,8 @@ public class Main {
     */
    public int getLastWidth() {
       final Preferences node = Preferences.userNodeForPackage(Main.class);
-      final String widthString = node.get("width", String
-            .valueOf(Configuration.WIDTH));
+      final String widthString = node.get("width",
+            String.valueOf(Configuration.WIDTH));
       final int width = Integer.parseInt(widthString);
       return width;
    }
@@ -361,6 +371,7 @@ public class Main {
 
    /**
     * Starts a new session with the specified file
+    * 
     * @param file the file
     * @param toggle if true, toggles whether the question or answer side of the
     *        card is shown
@@ -384,24 +395,27 @@ public class Main {
 
    /**
     * Remembers where the last deck was loaded from
+    * 
     * @param file
     */
-   public void setLastDirectory(File file) {
+   public void setLastDirectory(final File file) {
+      File newFile = null;
       try {
-         file = file.getCanonicalFile();
+         newFile = file.getCanonicalFile();
       }
       catch (IOException e) {
          e.printStackTrace();
       }
-      if (!file.isDirectory())
-         file = file.getParentFile();
+      if (!newFile.isDirectory())
+         newFile = newFile.getParentFile();
       Preferences node = Preferences.userNodeForPackage(Main.class);
-      node.put("directory", file.toString());
+      node.put("directory", newFile.toString());
    }
 
    /**
     * Stores the specified x-position as the preference. Called internally with
     * the current frame x-position.
+    * 
     * @param x the preferred x-position
     */
    public void setLastX(int x) {
@@ -412,6 +426,7 @@ public class Main {
    /**
     * Stores the specified y-position as the preference. Called internally with
     * the current frame y-position.
+    * 
     * @param y the preferred y-position
     */
    public void setLastY(int y) {
@@ -422,6 +437,7 @@ public class Main {
    /**
     * Stores the specified height as the preference. Called internally with the
     * current frame height.
+    * 
     * @param height the preferred height
     */
    public void setLastHeight(int height) {
@@ -432,6 +448,7 @@ public class Main {
    /**
     * Stores the specified width as the preference. Called internally with the
     * current frame width.
+    * 
     * @param width the preferred width
     */
    public void setLastWidth(int width) {
@@ -441,11 +458,12 @@ public class Main {
 
    /**
     * Sets the screen title to the specified string
+    * 
     * @param title the screen title
     */
-   public void setTitle(String title) {
-      if (title == null)
-         title = "Flashcards";
-      this.frame.setTitle(title);
+   public void setTitle(final String title) {
+      this.frame.setTitle(title == null
+            ? "Flashcards"
+            : title);
    }
 }
