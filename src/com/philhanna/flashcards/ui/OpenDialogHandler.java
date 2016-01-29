@@ -31,7 +31,7 @@ public class OpenDialogHandler {
       File cwd = this.main.getLastDirectory();
 
       // Create a file chooser initialized to this directory, and look
-      // for .flc or .xml files
+      // for .xml files
 
       JFileChooser fc = new JFileChooser(cwd);
       FileFilter filter = new FileFilter() {
@@ -39,13 +39,12 @@ public class OpenDialogHandler {
          @Override
          public boolean accept(File file) {
             return file.isDirectory()
-                  || file.getPath().endsWith(".flc")
                   || file.getPath().endsWith(".xml");
          }
 
          @Override
          public String getDescription() {
-            return "Flashcards (*.flc, *.xml)";
+            return "Flashcards (*.xml)";
          }
       };
       fc.setFileFilter(filter);

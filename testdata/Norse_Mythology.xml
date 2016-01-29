@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <cards>
    <title>Norse Mythology</title>
    <card>
@@ -40,7 +40,7 @@
          nourished the early gods.
       </question>
       <answer>
-         Auðumbla
+         AuÃ°umbla
       </answer>
    </card>
    <card>
@@ -48,12 +48,12 @@
          Generic name for a giant
       </question>
       <answer>
-         jötunn
+         jÃ¶tunn
       </answer>
    </card>
    <card>
       <question>
-         A jötunn of fire that sprang from Ymir's sweat. During Ragnarök, he
+         A jÃ¶tunn of fire that sprang from Ymir's sweat. During RagnarÃ¶k, he
          will come from the south with flames, carrying a very bright sword.
       </question>
       <answer>
@@ -70,22 +70,22 @@
          meet, and the world is repopulated by two human survivors.
       </question>
       <answer>
-         Ragnarök
+         RagnarÃ¶k
       </answer>
    </card>
    <card>
       <question>
          The first god of Norse mythology.  He was licked out of an ice block
-         by the primordial cow Auðumbla.  He was the father of Borr and hence
+         by the primordial cow AuÃ°umbla.  He was the father of Borr and hence
          the grandfather of Odin.
       </question>
       <answer>
-         Búri
+         BÃºri
       </answer>
    </card>
    <card>
       <question>
-         Son of Búri and father of Odin
+         Son of BÃºri and father of Odin
       </question>
       <answer>
          Borr
@@ -126,11 +126,11 @@
    </card>
    <card>
       <question>
-         Two humans who survive the events of Ragnarök and repopulate the
+         Two humans who survive the events of RagnarÃ¶k and repopulate the
          reborn world.
       </question>
       <answer>
-         Líf and Lífþrasir
+         LÃ­f and LÃ­fÃ¾rasir
       </answer>
    </card>
    <card>
@@ -147,12 +147,12 @@
          Baldr, and Tyr.
       </question>
       <answer>
-         Æsir
+         Ã†sir
       </answer>
    </card>
    <card>
       <question>
-         One of the two major groups of gods, which includes Njörd, Freyr,
+         One of the two major groups of gods, which includes NjÃ¶rd, Freyr,
          and Freyja.
       </question>
       <answer>
@@ -178,7 +178,7 @@
    </card>
    <card>
       <question>
-         Goddess of love, beauty, and fertility.  Wife of Óðr.
+         Goddess of love, beauty, and fertility.  Wife of Ã“Ã°r.
       </question>
       <answer>
          Freyja
@@ -187,7 +187,7 @@
    <card>
       <question>
          God of fertility, one of the Vanir.  Brother of Freyja.
-         Falls in love with the giantess Gerðr.
+         Falls in love with the giantess GerÃ°r.
       </question>
       <answer>
          Freyr
@@ -211,7 +211,7 @@
    </card>
    <card>
       <question>
-         One of the Æsir gods, guardian of Ásgarð.
+         One of the Ã†sir gods, guardian of ÃsgarÃ°.
       </question>
       <answer>
          Heimdall
@@ -219,15 +219,15 @@
    </card>
    <card>
       <question>
-         Home of the Æsir
+         Home of the Ã†sir
       </question>
       <answer>
-         Ásgarð
+         ÃsgarÃ°
       </answer>
    </card>
    <card>
       <question>
-         A majestic, enormous hall located in Ásgarð, ruled over by the god
+         A majestic, enormous hall located in ÃsgarÃ°, ruled over by the god
          Odin. Chosen by Odin, half of those that die in combat travel their
          upon death.
       </question>
@@ -247,11 +247,11 @@
    <card>
       <question>
          The bridge leading from Midgard, the realm of mortals, to Asgard, the
-         realm of the gods.  Guarded by Heimdall. Destroyed at Ragnarök, the
+         realm of the gods.  Guarded by Heimdall. Destroyed at RagnarÃ¶k, the
          end of the world.
       </question>
       <answer>
-         Bifröst (or "the Rainbow Bridge")
+         BifrÃ¶st (or "the Rainbow Bridge")
       </answer>
    </card>
    <card>
@@ -259,7 +259,7 @@
          Brother of Baldr, and his accidental killer.
       </question>
       <answer>
-         Hörðr
+         HÃ¶rÃ°r
       </answer>
    </card>
    <card>
@@ -274,7 +274,7 @@
    </card>
    <card>
       <question>
-         One of the Æsir, a shapeshifter and trickster.
+         One of the Ã†sir, a shapeshifter and trickster.
       </question>
       <answer>
          Loki
@@ -285,14 +285,14 @@
          The Norns
       </question>
       <answer>
-         Urðr (fate) , Verðanði (the present) , and Skuld (the future)
+         UrÃ°r (fate) , VerÃ°anÃ°i (the present) , and Skuld (the future)
       </answer>
    </card>
    <card>
       <question>
-         Son of Odin, and god of thunder.  Will kill Jörmunganðr, the world
-         serpent, at Ragnarök, but then will walk nine paces and fall dead,
-         poisoned by Jörmunganðr's venom
+         Son of Odin, and god of thunder.  Will kill JÃ¶rmunganÃ°r, the world
+         serpent, at RagnarÃ¶k, but then will walk nine paces and fall dead,
+         poisoned by JÃ¶rmunganÃ°r's venom
       </question>
       <answer>
          Thor
@@ -304,13 +304,13 @@
          His right hand was bitten off by the wolf, Fenrir
       </question>
       <answer>
-         Týr
+         TÃ½r
       </answer>
    </card>
    <card>
       <question>
-         A monstrous wolf, a son of Loki.  Foretold to kill Odin at Ragnarök,
-         but will then be killed by Odin's son Viðar.
+         A monstrous wolf, a son of Loki.  Foretold to kill Odin at RagnarÃ¶k,
+         but will then be killed by Odin's son ViÃ°ar.
       </question>
       <answer>
          Fenrir
@@ -320,10 +320,10 @@
       <question>
          A monstrous serpent, a son of Loki.
          Grew so large that he was able to encircle the earth.
-         Will be killed by Thor at Ragnarök.
+         Will be killed by Thor at RagnarÃ¶k.
       </question>
       <answer>
-         Jörmunganðr
+         JÃ¶rmunganÃ°r
       </answer>
    </card>
 </cards>

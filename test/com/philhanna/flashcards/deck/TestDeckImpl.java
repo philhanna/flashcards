@@ -29,7 +29,7 @@ public class TestDeckImpl extends BaseTest {
       BaseTest.setUpBeforeClass();
       dbf = DocumentBuilderFactory.newInstance();
       db = dbf.newDocumentBuilder();
-      inputFile = new File(testdata, "Best_Picture_Awards.flc");
+      inputFile = new File(testdata, "Best_Picture_Awards.xml");
       doc = db.parse(inputFile);
    }
 

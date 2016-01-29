@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <cards>
    <title>Academy Award-winning Best Pictures</title>
    <card>
@@ -39,7 +39,7 @@
    </card>
    <card>
       <question>1937</question>
-      <answer>THe Life of Émile Zola</answer>
+      <answer>The Life of Ã‰mile Zola</answer>
    </card>
    <card>
       <question>1938</question>
