@@ -1,5 +1,8 @@
 build/
 doc/
+.classpath
+.project
+.settings/
 *.class
 *.swp
 /.gradle/
