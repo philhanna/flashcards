@@ -15,22 +15,22 @@ import com.philhanna.flashcards.*;
 
 public class TestDeckImpl extends BaseTest {
 
-   private static boolean firstTime = true;
-   private static DocumentBuilderFactory dbf;
-   private static DocumentBuilder db;
-   private static File inputFile;
-   private static Document doc;
+   private static final String TEST_DECK = "/Best_Picture_Awards.xml";
 
-   @BeforeClass
-   public static void setUpBeforeClass() throws Exception {
-      if (!firstTime)
-         return;
-      firstTime = false;
-      BaseTest.setUpBeforeClass();
-      dbf = DocumentBuilderFactory.newInstance();
-      db = dbf.newDocumentBuilder();
-      inputFile = new File(testdata, "Best_Picture_Awards.xml");
-      doc = db.parse(inputFile);
+   private Document doc;
+
+   @Before
+   public void setUp() throws Exception {
+      super.setUp();
+      final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+      final DocumentBuilder db = dbf.newDocumentBuilder();
+      final InputStream inputStream = getClass().getResourceAsStream(TEST_DECK);
+      doc = db.parse(inputStream);
+   }
+
+   @After
+   public void tearDown() throws Exception {
+      super.tearDown();
    }
 
    @Test
@@ -69,7 +69,9 @@ public class TestDeckImpl extends BaseTest {
 
    @Test
    public void throwsExceptionForEmptyDeck() throws Exception {
-      Document emptyDoc = db.newDocument();
+      final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+      final DocumentBuilder db = dbf.newDocumentBuilder();
+      final Document emptyDoc = db.newDocument();
       try {
          new DeckImpl(emptyDoc);
          fail("Should have thrown EmptyDeckException");
@@ -79,15 +81,12 @@ public class TestDeckImpl extends BaseTest {
       }
    }
 
-   private static final Document reloadDocument() throws SAXException, IOException {
-      return db.parse(inputFile);
-   }
-
    @Test
-   public void throwsExceptionForMissingQuestion() throws SAXException, IOException {
-      final Document doc = reloadDocument();
-      final Element elemCard = (Element) doc.getElementsByTagName("card").item(2);
-      final Element elemQuestion = (Element) elemCard.getElementsByTagName("question").item(0);
+   public void throwsExceptionForMissingQuestion() throws SAXException {
+      final Element elemCard = (Element) doc.getElementsByTagName("card")
+            .item(2);
+      final Element elemQuestion = (Element) elemCard
+            .getElementsByTagName("question").item(0);
       elemCard.removeChild(elemQuestion);
       try {
          new DeckImpl(doc);
@@ -101,10 +100,11 @@ public class TestDeckImpl extends BaseTest {
    }
 
    @Test
-   public void throwsExceptionForMissingAnswer() throws SAXException, IOException {
-      final Document doc = reloadDocument();
-      final Element elemCard = (Element) doc.getElementsByTagName("card").item(2);
-      final Element elemAnswer = (Element) elemCard.getElementsByTagName("answer").item(0);
+   public void throwsExceptionForMissingAnswer() throws SAXException {
+      final Element elemCard = (Element) doc.getElementsByTagName("card")
+            .item(2);
+      final Element elemAnswer = (Element) elemCard
+            .getElementsByTagName("answer").item(0);
       elemCard.removeChild(elemAnswer);
       try {
          new DeckImpl(doc);

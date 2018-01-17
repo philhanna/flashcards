@@ -2,3 +2,4 @@ build/
 doc/
 *.class
 *.swp
+/.gradle/

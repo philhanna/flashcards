@@ -9,16 +9,7 @@ import com.philhanna.flashcards.deck.CardImpl;
 
 public class TestSessionCardImpl extends BaseTest {
 
-   private static boolean firstTime = true;
    private SessionCard card = null;
-
-   @BeforeClass
-   public static void setUpBeforeClass() throws Exception {
-      if (!firstTime)
-         return;
-      firstTime = false;
-      BaseTest.setUpBeforeClass();
-   }
 
    @Before
    public void setUp() throws Exception {
