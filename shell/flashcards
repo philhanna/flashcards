@@ -1,2 +1,3 @@
-#! /bin/sh
+#! /bin/bash
 java -jar ~/lib/fc2.jar "$@" &
+
