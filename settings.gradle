@@ -15,4 +15,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'fc2'
+rootProject.name = 'FlashCards2'
