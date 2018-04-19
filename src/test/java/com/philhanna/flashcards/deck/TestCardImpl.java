@@ -6,7 +6,14 @@ import org.junit.*;
 
 import com.philhanna.flashcards.*;
 
+/**
+ * Unit tests for CardImpl
+ */
 public class TestCardImpl extends BaseTest {
+
+   // ==================================================================
+   // Unit tests
+   // ==================================================================
 
    @Test
    public void toggleSwitchesQuestionAndAnswer() {

@@ -7,14 +7,29 @@ import org.junit.*;
 import com.philhanna.flashcards.*;
 import com.philhanna.flashcards.deck.CardImpl;
 
+/**
+ * Unit tests for SessionCardImpl
+ */
 public class TestSessionCardImpl extends BaseTest {
 
+   // ==================================================================
+   // Instance variables
+   // ==================================================================
+
    private SessionCard card = null;
+
+   // ==================================================================
+   // Fixtures
+   // ==================================================================
 
    @Before
    public void setUp() throws Exception {
       card = new SessionCardImpl(new CardImpl("Who is buried in Grant's Tomb?", "Grant"));
    }
+
+   // ==================================================================
+   // Unit tests
+   // ==================================================================
 
    @Test
    public void getStatisticsAlwaysReturnsNonNull() {

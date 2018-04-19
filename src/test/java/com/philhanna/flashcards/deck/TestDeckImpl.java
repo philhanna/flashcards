@@ -13,11 +13,26 @@ import org.xml.sax.SAXException;
 
 import com.philhanna.flashcards.*;
 
+/**
+ * Unit tests for DeckImpl
+ */
 public class TestDeckImpl extends BaseTest {
+
+   // ==================================================================
+   // Class constants and variables
+   // ==================================================================
 
    private static final String TEST_DECK = "/Best_Picture_Awards.xml";
 
+   // ==================================================================
+   // Instance variables
+   // ==================================================================
+
    private Document doc;
+
+   // ==================================================================
+   // Fixtures
+   // ==================================================================
 
    @Before
    public void setUp() throws Exception {
@@ -32,6 +47,10 @@ public class TestDeckImpl extends BaseTest {
    public void tearDown() throws Exception {
       super.tearDown();
    }
+
+   // ==================================================================
+   // Unit tests
+   // ==================================================================
 
    @Test
    public void getsCardsFromXML() throws SAXException, ApplicationException {
