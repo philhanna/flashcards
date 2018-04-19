@@ -5,6 +5,10 @@ repositories {
   jcenter()
 }
 
+eclipse {
+  project.natures 'org.eclipse.buildship.core.gradleprojectnature'
+}
+
 jar {
    manifest {
       attributes(
