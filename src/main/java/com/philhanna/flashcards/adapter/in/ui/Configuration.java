@@ -25,7 +25,6 @@ public class Configuration {
 
    public static final Properties config = new Properties();
 
-   public static final String DECK_FORMAT;
    public static final String TEXT_EDITOR;
    public static final String CARD_ICON_FILE_NAME;
    public static final int X;
@@ -50,7 +49,6 @@ public class Configuration {
          catch (IOException ignored) {}
       }
 
-      DECK_FORMAT = config.getProperty("deck_format", "xml").toLowerCase();
       CARD_ICON_FILE_NAME = config.getProperty("card_icon", "/cardicon.png");
       X = Integer.parseInt(config.getProperty("x", "50"));
       Y = Integer.parseInt(config.getProperty("y", "50"));

@@ -25,42 +25,24 @@ public class OpenDialogHandler {
     * with the one selected.
     */
    public void run() {
-
-      // Get the path to the directory containing the last deck used
-
       File cwd = this.main.getLastDirectory();
 
-      // Create a file chooser initialized to this directory, and look
-      // for .xml files
-
-      final boolean useSqlite = "sqlite".equals(Configuration.DECK_FORMAT);
-      final String ext = useSqlite ? ".db" : ".xml";
-      final String description = useSqlite ? "Flashcards (*.db)" : "Flashcards (*.xml)";
-
       JFileChooser fc = new JFileChooser(cwd);
-      FileFilter filter = new FileFilter() {
-
+      fc.setFileFilter(new FileFilter() {
          @Override
          public boolean accept(File file) {
-            return file.isDirectory() || file.getPath().endsWith(ext);
+            return file.isDirectory() || file.getPath().endsWith(".db");
          }
 
          @Override
          public String getDescription() {
-            return description;
+            return "Flashcards (*.db)";
          }
-      };
-      fc.setFileFilter(filter);
-
-      // Display the dialog and check the return code. If a file was
-      // selected,
-      // start a new sessions with that as the file.
+      });
 
       int rc = fc.showOpenDialog(this.main.getFrame());
-      switch (rc) {
-         case 0:
-            File file = fc.getSelectedFile();
-            this.main.setFile(file);
+      if (rc == JFileChooser.APPROVE_OPTION) {
+         this.main.setFile(fc.getSelectedFile());
       }
    }
 }

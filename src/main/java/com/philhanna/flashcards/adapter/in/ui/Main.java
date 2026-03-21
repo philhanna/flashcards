@@ -9,7 +9,6 @@ import javax.swing.*;
 
 import com.philhanna.flashcards.domain.*;
 import com.philhanna.flashcards.port.out.DeckLoader;
-import com.philhanna.flashcards.adapter.out.xml.XmlDeckLoader;
 import com.philhanna.flashcards.adapter.out.sqlite.SqliteDeckLoader;
 import com.philhanna.flashcards.adapter.in.ui.menus.AppMenuBar;
 
@@ -52,9 +51,7 @@ public class Main {
    // Instance variables
    // ==========================================================
 
-   private final DeckLoader deckLoader = "sqlite".equals(Configuration.DECK_FORMAT)
-         ? new SqliteDeckLoader()
-         : new XmlDeckLoader();
+   private final DeckLoader deckLoader = new SqliteDeckLoader();
    private JFrame frame;
    private File file;
    private SessionPanel sc;

@@ -6,15 +6,13 @@ question-and-answer memorization is useful.
 
 ## Features
 
-- **XML or SQLite decks** — card decks are stored as plain XML files or SQLite databases;
-  the format is selected via `config.properties`
+- **SQLite decks** — card decks are stored as SQLite database files (`.db`)
 - **Flip interaction** — each card shows a question; click *Flip* to reveal the answer
 - **Right / Wrong tracking** — mark each answer as right or wrong; missed cards are
   re-inserted and reshuffled into the remaining deck so you keep seeing them until you
   get them right
 - **Review mode** — a checkbox that shows all answers immediately, so you can browse
   the deck without being quizzed
-- **Toggle mode** — swap questions and answers so you can drill from the answer side
 - **Session statistics** — at the end of a session the app displays a summary table
   showing how many times each card was answered right and wrong, plus the total
   elapsed time and card-view count
@@ -25,7 +23,7 @@ question-and-answer memorization is useful.
 
 - Java 11 or later
 - Maven 3.x (to build from source)
-- Python 3 (optional — only needed to convert XML decks to SQLite)
+- Python 3 (optional — only needed to convert legacy XML decks to SQLite)
 
 ## Building
 
@@ -58,34 +56,9 @@ Or directly:
 java -jar target/flashcards-1.0-SNAPSHOT.jar [deckfile]
 ```
 
-## Deck file formats
+## Deck format
 
-The app supports two storage formats, controlled by the `deck_format` property in
-`config.properties`. Both formats represent the same data: a deck title and an ordered
-list of question/answer cards.
-
-### XML
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<cards>
-  <title>My Deck Title</title>
-
-  <card>
-    <question>What is the capital of France?</question>
-    <answer>Paris</answer>
-  </card>
-
-  <card>
-    <question>Who wrote Hamlet?</question>
-    <answer>William Shakespeare</answer>
-  </card>
-</cards>
-```
-
-### SQLite
-
-Each deck is a single `.db` file with the following schema:
+Each deck is a single `.db` SQLite file with the following schema:
 
 ```sql
 CREATE TABLE deck (title TEXT NOT NULL);
@@ -97,7 +70,9 @@ CREATE TABLE card (
 );
 ```
 
-To convert an existing XML deck to SQLite, use the included Python script:
+### Migrating from XML
+
+If you have existing XML decks, convert them with the included Python script:
 
 ```bash
 python3 tools/xml_to_sqlite.py path/to/deck.xml
@@ -111,15 +86,15 @@ done
 
 ## Sample decks
 
-Several ready-to-use decks are included under `src/test/resources/` in both formats:
+Several ready-to-use decks are included under `src/test/resources/`:
 
 | Deck | Subject |
 |---|---|
-| `Shakespeare` | Shakespeare tragedies and comedies |
-| `Best_Picture_Awards` | Academy Award Best Picture winners |
-| `Jane_Austen` | Jane Austen novels |
-| `NBA` | NBA trivia |
-| `Norse_Mythology` | Norse mythology |
+| `Shakespeare.db` | Shakespeare tragedies and comedies |
+| `Best_Picture_Awards.db` | Academy Award Best Picture winners |
+| `Jane_Austen.db` | Jane Austen novels |
+| `NBA.db` | NBA trivia |
+| `Norse_Mythology.db` | Norse mythology |
 
 ## Configuration
 
@@ -140,7 +115,6 @@ If no user config file is found, the bundled defaults are used.
 
 | Property | Default | Description |
 |---|---|---|
-| `deck_format` | `xml` | Storage format for card decks. `xml` opens `.xml` files; `sqlite` opens `.db` files. |
 | `x` | `100` | Horizontal position of the main window in pixels from the left of the screen. Updated automatically when the window is closed. |
 | `y` | `100` | Vertical position of the main window in pixels from the top of the screen. Updated automatically when the window is closed. |
 | `width` | `600` | Width of the main window in pixels. Updated automatically when the window is closed. |
