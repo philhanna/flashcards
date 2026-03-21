@@ -1,4 +1,4 @@
-package com.philhanna.flashcards.domain;
+package com.philhanna.flashcards.usecase;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,18 +6,19 @@ import java.util.List;
 
 import org.junit.jupiter.api.*;
 
+import com.philhanna.flashcards.domain.*;
 import com.philhanna.flashcards.domain.session.*;
 
 /**
  * Unit tests for StudySession
  */
-public class TestStudySession extends BaseTest {
+public class TestStudySession {
 
    private DeckSession deckSession;
    private StudySession studySession;
 
    @BeforeEach
-   public void setUp() throws Exception {
+   void setUp() {
       deckSession = new DeckSession(deckOf(
             "Q1", "A1",
             "Q2", "A2",

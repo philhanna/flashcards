@@ -1,4 +1,4 @@
-package com.philhanna.flashcards.domain;
+package com.philhanna.flashcards.usecase;
 
 import com.philhanna.flashcards.domain.session.Session;
 import com.philhanna.flashcards.domain.session.SessionCard;

@@ -10,6 +10,7 @@ import javax.swing.*;
 import com.philhanna.flashcards.domain.*;
 import com.philhanna.flashcards.domain.session.*;
 import com.philhanna.flashcards.port.in.StudySessionUseCase;
+import com.philhanna.flashcards.usecase.StudySession;
 import com.philhanna.flashcards.port.out.DeckLoader;
 import com.philhanna.flashcards.adapter.in.ui.events.CardChangeEvent;
 import com.philhanna.flashcards.adapter.in.ui.events.CardChangeListener;
