@@ -44,7 +44,8 @@ public class SqliteDeck implements Deck {
          this.cards = loadCards(conn);
       }
       catch (SQLException e) {
-         throw new ApplicationException("Failed to read SQLite deck: " + file.getName(), e);
+         throw new ApplicationException(
+               "Failed to read SQLite deck: " + file.getName() + ": " + e.getMessage(), e);
       }
    }
 
