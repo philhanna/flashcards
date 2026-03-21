@@ -60,7 +60,7 @@ public class OpenDialogHandler {
       switch (rc) {
          case 0:
             File file = fc.getSelectedFile();
-            this.main.setFile(file, false);
+            this.main.setFile(file);
       }
    }
 }

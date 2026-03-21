@@ -5,7 +5,7 @@ import com.philhanna.flashcards.domain.BasicCard;
 
 /**
  * An implementation of the <code>SessionCard</code> interface that
- * combines the card functions (get question, get answer, toggle) with
+ * combines the card functions (get question, get answer) with
  * the statistics-keeping required for a session.
  */
 public class TrackedCard extends BasicCard implements SessionCard {

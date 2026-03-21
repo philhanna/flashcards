@@ -14,10 +14,4 @@ public interface Card {
     * Returns the answer text
     */
    public String getAnswer();
-
-   /**
-    * Toggles between showing its answer and showing its question. The card must
-    * remember its current state.
-    */
-   public void toggle();
 }

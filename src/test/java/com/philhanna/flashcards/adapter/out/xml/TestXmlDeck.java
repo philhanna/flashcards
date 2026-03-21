@@ -120,17 +120,4 @@ public class TestXmlDeck extends BaseTest {
       assertEquals(expected, actual);
    }
 
-   @Test
-   void togglesEntireDeck() throws SAXException, ApplicationException {
-      final Deck deck = new XmlDeck(doc);
-      final List<Card> cardList = deck.getCards();
-      final Card firstCard = cardList.get(0);
-
-      deck.toggle();
-      assertEquals("Wings", firstCard.getQuestion());
-
-      deck.toggle();
-      assertEquals("1928", firstCard.getQuestion());
-   }
-
 }

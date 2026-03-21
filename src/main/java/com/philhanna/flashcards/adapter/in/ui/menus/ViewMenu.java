@@ -6,7 +6,6 @@ import com.philhanna.flashcards.adapter.in.ui.Main;
 
 /**
  * The second menu. Constructed by the {@link AppMenuBar}.
- * @see ToggleMenuItem
  * @see ResetSizeMenuItem
  */
 public class ViewMenu extends AbstractMenu {
@@ -17,7 +16,6 @@ public class ViewMenu extends AbstractMenu {
     */
    public ViewMenu(Main main) {
       super(main, new JMenu("View"));
-      menu.add(new ToggleMenuItem(main).getComponent());
       menu.add(new ResetSizeMenuItem(main).getComponent());
    }
 

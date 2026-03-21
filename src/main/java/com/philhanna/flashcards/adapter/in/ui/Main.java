@@ -43,7 +43,7 @@ public class Main {
       Main main = new Main();
       if (args.length > 0) {
          String fileName = args[0];
-         main.setFile(new File(fileName), false);
+         main.setFile(new File(fileName));
       }
       main.getFrame().setVisible(true);
    }
@@ -107,9 +107,9 @@ public class Main {
       Configuration.save("height", String.valueOf(frame.getHeight()));
    }
 
-   private void startSession(File file, boolean toggle) {
+   private void startSession(File file) {
       try {
-         sc = new SessionPanel(this, deckLoader, file, toggle);
+         sc = new SessionPanel(this, deckLoader, file);
          JPanel panel = this.sc.getComponent();
          frame.getContentPane().add(panel, "Center");
          frame.validate();
@@ -183,14 +183,6 @@ public class Main {
       Configuration.save("width",  String.valueOf(Configuration.WIDTH));
       Configuration.save("height", String.valueOf(Configuration.HEIGHT));
       frame.setBounds(getBounds());
-   }
-
-   /**
-    * Switches the card display mode from showing the question to showing the
-    * answer, and vice versa.
-    */
-   public void doToggle(boolean toggle) {
-      setFile(this.file, toggle);
    }
 
    /**
@@ -280,7 +272,7 @@ public class Main {
    /**
     * Starts a new session with the specified file
     */
-   public void setFile(File file, boolean toggle) {
+   public void setFile(File file) {
       this.file = file;
       Container content = this.frame.getContentPane();
       content.removeAll();
@@ -293,7 +285,7 @@ public class Main {
       }
       else {
          setLastDirectory(file);
-         startSession(file, toggle);
+         startSession(file);
       }
    }
 

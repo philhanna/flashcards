@@ -11,7 +11,6 @@ public enum MenuItems {
    EDIT(new JMenuItem("Edit")),
    RESTART(new JMenuItem("Restart")),
    EXIT( new JMenuItem("Exit")),
-   TOGGLE(new JMenuItem(ToggleMenuItem.ANSWERS)),
    RESET(new JMenuItem("Reset window size")),
    ABOUT(new JMenuItem("About")),
    ;

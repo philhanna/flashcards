@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -206,14 +205,4 @@ public class XmlDeck implements Deck {
       return this.title;
    }
 
-   /**
-    * Toggles each card in the deck so that it shows the answer rather
-    * than the question (or vice versa)
-    */
-   public void toggle() {
-      for (Iterator<Card> it = this.cards.iterator(); it.hasNext();) {
-         BasicCard card = (BasicCard) it.next();
-         card.toggle();
-      }
-   }
 }

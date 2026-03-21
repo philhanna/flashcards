@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.philhanna.flashcards.domain.ApplicationException;
@@ -95,11 +94,4 @@ public class SqliteDeck implements Deck {
       return cards;
    }
 
-   @Override
-   public void toggle() {
-      for (Iterator<Card> it = cards.iterator(); it.hasNext();) {
-         BasicCard card = (BasicCard) it.next();
-         card.toggle();
-      }
-   }
 }

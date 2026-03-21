@@ -1,15 +1,12 @@
 package com.philhanna.flashcards.domain;
 
-import com.philhanna.flashcards.domain.Card;
-
 /**
  * The basic implementation of the <code>Card</code> interface, with getters for the
- * question and answer, and the ability to toggle the card from showing its
- * answer to showing its question.
+ * question and answer.
  */
 public class BasicCard implements Card {
-   private String question;
-   private String answer;
+   private final String question;
+   private final String answer;
 
    /**
     * Creates a new default card implementation with the specified question and
@@ -30,12 +27,5 @@ public class BasicCard implements Card {
    @Override
    public String getQuestion() {
       return this.question;
-   }
-
-   @Override
-   public void toggle() {
-      String temp = this.question;
-      this.question = this.answer;
-      this.answer = temp;
    }
 }

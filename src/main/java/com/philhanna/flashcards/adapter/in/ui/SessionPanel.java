@@ -80,24 +80,21 @@ public class SessionPanel {
     * @param file the file to be opened
     * @throws ApplicationException
     */
-   public SessionPanel(Main main, DeckLoader deckLoader, File file, boolean toggle)
+   public SessionPanel(Main main, DeckLoader deckLoader, File file)
          throws ApplicationException {
 
       // Save the reference to the main program
 
       this.main = main;
-      
+
       // Turn on the "restart" and "edit" menu items
-      
+
       MenuItems.EDIT.getMenuItem().setEnabled(true);
       MenuItems.RESTART.getMenuItem().setEnabled(true);
 
-      // Create a new deck object by parsing the specified XML file
+      // Create a new deck object by parsing the specified file
 
       Deck deck = deckLoader.load(file);
-      if (toggle) {
-         deck.toggle();
-      }
 
       // Set this deck's name in the frame title
 
@@ -240,7 +237,7 @@ public class SessionPanel {
     * @see SummaryButtonPanel
     */
    public void close() {
-      main.setFile(null, false);
+      main.setFile(null);
    }
 
    /**
@@ -363,8 +360,7 @@ public class SessionPanel {
     * @see SummaryButtonPanel
     */
    public void restart() {
-      final File file = main.getFile();
-      main.setFile(file, false);
+      main.setFile(main.getFile());
    }
 
    /**
