@@ -9,7 +9,7 @@ import com.philhanna.flashcards.ui.Main;
  * answer/question and question/answer. This menu item differs from others in
  * that its text changes as it is toggled.
  */
-public class ToggleMenuItemContainer extends MenuItemContainer {
+public class ToggleMenuItem extends AbstractMenuItem {
 
    public static final String QUESTIONS = "Show questions";
    public static final String ANSWERS = "Show answers";
@@ -17,9 +17,9 @@ public class ToggleMenuItemContainer extends MenuItemContainer {
    private boolean showingQuestions = true;
 
    /**
-    * Creates a new ToggleMenuItemContainer
+    * Creates a new ToggleMenuItem
     */
-   public ToggleMenuItemContainer(Main main) {
+   public ToggleMenuItem(Main main) {
       super(main, MenuItems.TOGGLE.getMenuItem());
    }
 

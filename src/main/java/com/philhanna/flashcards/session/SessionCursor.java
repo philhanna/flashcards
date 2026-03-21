@@ -3,7 +3,7 @@ package com.philhanna.flashcards.session;
 /**
  * Information about the session - total number of cards, number viewed,
  * number not viewed.
- * @see SessionImpl
+ * @see DeckSession
  */
 public interface SessionCursor {
    

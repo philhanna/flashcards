@@ -2,12 +2,12 @@ package com.philhanna.flashcards;
 
 import java.util.List;
 
-import com.philhanna.flashcards.deck.DeckImpl;
+import com.philhanna.flashcards.deck.XmlDeck;
 
 /**
  * A deck of flash cards having a title and a list of cards. The deck can be
  * toggled between showing the answers or showing the questions.
- * @see DeckImpl
+ * @see XmlDeck
  */
 public interface Deck {
 

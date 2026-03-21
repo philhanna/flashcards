@@ -8,9 +8,9 @@ import com.philhanna.flashcards.BaseTest;
 import com.philhanna.flashcards.Card;
 
 /**
- * Unit tests for CardImpl
+ * Unit tests for BasicCard
  */
-public class TestCardImpl extends BaseTest {
+public class TestBasicCard extends BaseTest {
 
    // ==================================================================
    // Unit tests
@@ -18,7 +18,7 @@ public class TestCardImpl extends BaseTest {
 
    @Test
    void toggleSwitchesQuestionAndAnswer() {
-      Card card = new CardImpl("111", "222");
+      Card card = new BasicCard("111", "222");
       card.toggle();
       assertEquals("222", card.getQuestion(), "Question is unexpected");
       assertEquals("111", card.getAnswer(), "Answer is unexpected");

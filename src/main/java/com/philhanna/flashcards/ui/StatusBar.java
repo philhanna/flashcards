@@ -9,33 +9,33 @@ import javax.swing.JPanel;
  * A panel containing status information, including the card numbers,
  * statistics, and the review mode checkbox.
  * <p>
- * <img src="doc-files/StatusPanelContainer-1.png"/>
+ * <img src="doc-files/StatusBar-1.png"/>
  * </p>
- * @see CardNumbersContainer
- * @see CardStatisticsContainer
- * @see ReviewModeCheckboxContainer
- * @see SessionContainer
+ * @see CardProgressPanel
+ * @see CardStatsPanel
+ * @see ReviewModeCheckbox
+ * @see SessionPanel
  */
-public class StatusPanelContainer {
+public class StatusBar {
    private JPanel panel;
 
    /**
-    * Creates a new StatusPanelContainer
+    * Creates a new StatusBar
     * @param sc the session container
     */
-   public StatusPanelContainer(SessionContainer sc) {
+   public StatusBar(SessionPanel sc) {
       this.panel = new JPanel();
 
       this.panel.setLayout(new BorderLayout(10, 5));
       this.panel.setBorder(BorderFactory.createLoweredBevelBorder());
 
-      CardNumbersContainer cnc = new CardNumbersContainer(sc);
+      CardProgressPanel cnc = new CardProgressPanel(sc);
       this.panel.add(cnc.getComponent(), "West");
 
-      CardStatisticsContainer csc = new CardStatisticsContainer(sc);
+      CardStatsPanel csc = new CardStatsPanel(sc);
       this.panel.add(csc.getComponent(), "Center");
 
-      ReviewModeCheckboxContainer rmcc = new ReviewModeCheckboxContainer(sc);
+      ReviewModeCheckbox rmcc = new ReviewModeCheckbox(sc);
       this.panel.add(rmcc.getComponent(), "East");
    }
 

@@ -11,7 +11,7 @@ import com.philhanna.flashcards.ui.events.SessionStateChangeEvent;
 import com.philhanna.flashcards.ui.events.SessionStateChangeListener;
 
 /**
- * A container created by the SessionContainer for a panel containing
+ * A container created by the SessionPanel for a panel containing
  * two buttons. The buttons will change text and meaning, depending on
  * the session state.
  * <p>
@@ -32,9 +32,9 @@ import com.philhanna.flashcards.ui.events.SessionStateChangeListener;
  * displayed, the buttons allow the user to restart this deck or close
  * it and open a new one</li>
  * </ul>
- * @see StatisticsButtonContainer
+ * @see SummaryButtonPanel
  */
-public class ButtonPanelContainer implements ActionListener,
+public class ButtonPanel implements ActionListener,
       SessionStateChangeListener {
 
    // ==========================================================
@@ -54,17 +54,17 @@ public class ButtonPanelContainer implements ActionListener,
    private JPanel panel;
    private JButton button1;
    private JButton button2;
-   private SessionContainer sc;
+   private SessionPanel sc;
 
    // ==========================================================
    // Constructors
    // ==========================================================
 
    /**
-    * Creates a new ButtonPanelContainer
+    * Creates a new ButtonPanel
     * @param sc the parent session container
     */
-   public ButtonPanelContainer(SessionContainer sc) {
+   public ButtonPanel(SessionPanel sc) {
       this.sc = sc;
       this.panel = new JPanel();
       this.panel.add(createInnerPanel());
@@ -100,7 +100,7 @@ public class ButtonPanelContainer implements ActionListener,
    // ==========================================================
 
    /**
-    * Returns the contained panel to the parent {@link SessionContainer}
+    * Returns the contained panel to the parent {@link SessionPanel}
     */
    public Component getComponent() {
       return this.panel;

@@ -15,6 +15,6 @@ public class XmlDeckLoader implements DeckLoader {
 
    @Override
    public Deck load(File file) throws SAXException, ApplicationException {
-      return new DeckImpl(file);
+      return new XmlDeck(file);
    }
 }

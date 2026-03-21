@@ -17,11 +17,11 @@ import com.philhanna.flashcards.ui.events.SessionStateChangeEvent;
 import com.philhanna.flashcards.ui.events.SessionStateChangeListener;
 
 /**
- * A container created by the SessionContainer for a panel containing a
+ * A container created by the SessionPanel for a panel containing a
  * question and answer. The answer may or may not be hidden, depending
  * on the session state.
  * <p>
- * <img src="doc-files/QandAPanelContainer-1.png"/>
+ * <img src="doc-files/CardPanel-1.png"/>
  * </p>
  * First, it constructs a {@link javax.swing.JPanel} with a
  * {@link javax.swing.BoxLayout}, then adds two text area containers
@@ -33,11 +33,11 @@ import com.philhanna.flashcards.ui.events.SessionStateChangeListener;
  * card changes, the panel needs to use new question and answer text.
  * When the session state changes, the visibility of the question and
  * answer fields may change.
- * @see com.philhanna.flashcards.ui.SessionContainer
+ * @see com.philhanna.flashcards.ui.SessionPanel
  * @see com.philhanna.flashcards.session.SessionCard
  * @see com.philhanna.flashcards.CardHistory
  */
-public class QandAPanelContainer implements SessionStateChangeListener,
+public class CardPanel implements SessionStateChangeListener,
       CardChangeListener {
 
    // ==========================================================
@@ -47,7 +47,7 @@ public class QandAPanelContainer implements SessionStateChangeListener,
    private JPanel panel;
    private JLabel lblQuestion;
    private JLabel lblAnswer;
-   private SessionContainer sc;
+   private SessionPanel sc;
 
    // ==========================================================
    // Constructors
@@ -58,7 +58,7 @@ public class QandAPanelContainer implements SessionStateChangeListener,
     * container.
     * @param sc the session container
     */
-   public QandAPanelContainer(SessionContainer sc) {
+   public CardPanel(SessionPanel sc) {
       this.sc = sc;
       this.panel = new JPanel();
       this.panel.setLayout(new BoxLayout(this.panel, 1));

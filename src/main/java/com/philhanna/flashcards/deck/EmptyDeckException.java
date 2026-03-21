@@ -4,7 +4,7 @@ import com.philhanna.flashcards.ApplicationException;
 
 /**
  * Thrown when there are no cards in a deck
- * @see DeckImpl#getCardsFromXML(Document)
+ * @see XmlDeck#getCardsFromXML(Document)
  */
 public class EmptyDeckException extends ApplicationException {
    private static final long serialVersionUID = 1L;

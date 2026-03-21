@@ -7,7 +7,7 @@ import com.philhanna.flashcards.Card;
  * question and answer, and the ability to toggle the card from showing its
  * answer to showing its question.
  */
-public class CardImpl implements Card {
+public class BasicCard implements Card {
    private String question;
    private String answer;
 
@@ -17,7 +17,7 @@ public class CardImpl implements Card {
     * @param question the question text
     * @param answer the answer text
     */
-   public CardImpl(String question, String answer) {
+   public BasicCard(String question, String answer) {
       this.question = question;
       this.answer = answer;
    }

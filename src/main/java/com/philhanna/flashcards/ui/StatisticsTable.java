@@ -15,7 +15,7 @@ import com.philhanna.flashcards.session.*;
  * <p>
  * <img src="doc-files/StatisticsTable-1.png"/>
  * <p>
- * @see StatisticsPanelContainer
+ * @see SummaryPanel
  */
 public class StatisticsTable {
 
@@ -139,7 +139,7 @@ public class StatisticsTable {
     * Creates a new statistics table
     * @param sc the session container
     */
-   public StatisticsTable(SessionContainer sc) {
+   public StatisticsTable(SessionPanel sc) {
       this.panel = new JPanel();
       String text = getStatisticsAsHTML(sc.getSession());
       this.table = new JLabel(text);
@@ -152,7 +152,7 @@ public class StatisticsTable {
 
    /**
     * Returns the statistics table to the statistics panel container
-    * @see StatisticsPanelContainer
+    * @see SummaryPanel
     */
    public Component getComponent() {
       return this.panel;

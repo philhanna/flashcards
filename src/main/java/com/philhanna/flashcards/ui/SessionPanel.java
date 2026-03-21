@@ -21,38 +21,38 @@ import com.philhanna.flashcards.ui.menus.MenuItems;
  * An object that creates and manages the GUI components and statistics
  * for a pass through a card deck.
  * <p>
- * Starts by parsing the card deck file using an {@link DeckImpl} and
+ * Starts by parsing the card deck file using an {@link XmlDeck} and
  * creating a {@link Session} for it. A session provides methods for
  * moving forward and backward through the deck and maintains statistics
  * about right and wrong answers.
  * <p>
- * <img src="doc-files/SessionContainer-1.png"/>
+ * <img src="doc-files/SessionPanel-1.png"/>
  * <p>
  * After creating the session, this object then creates the GUI
  * components to represent the session in the frame:
  * <ul>
- * <li>A question and answer panel ({@link QandAPanelContainer}) at the
+ * <li>A question and answer panel ({@link CardPanel}) at the
  * center. This has an upper panel that shows the text of the question,
  * and a lower panel that shows the answer. This lower panel is not
  * shown until the user clicks the <code>Flip</code> button</li>
- * <li>A {@link ButtonPanelContainer} and {@link StatusPanelContainer}
+ * <li>A {@link ButtonPanel} and {@link StatusBar}
  * at the bottom. The button panel contains two buttons, which change
  * labels according to the state of the session.</li>
  * </ul>
  * At the end of the deck, the session statistics panel is displayed
- * @see DeckImpl
+ * @see XmlDeck
  * @see Session
- * @see SessionImpl
- * @see ButtonPanelContainer
- * @see StatusPanelContainer
+ * @see DeckSession
+ * @see ButtonPanel
+ * @see StatusBar
  * @see SessionStateChangeListener
  * @see SessionStateChangeEvent
  * @see CardChangeListener
  * @see CardChangeEvent
- * @see QandAPanelContainer
- * @see StatisticsPanelContainer
+ * @see CardPanel
+ * @see SummaryPanel
  */
-public class SessionContainer {
+public class SessionPanel {
 
    // ==========================================================
    // Class variables and constants
@@ -62,11 +62,11 @@ public class SessionContainer {
    private JPanel panel;
    private Session session;
    private SessionState sessionState = SessionState.ASKING_QUESTION;
-   private ButtonPanelContainer bpc;
-   private StatusPanelContainer spc;
+   private ButtonPanel bpc;
+   private StatusBar spc;
    private List<SessionStateChangeListener> sessionStateChangeListeners = new ArrayList<SessionStateChangeListener>();
    private List<CardChangeListener> cardChangeListeners = new ArrayList<CardChangeListener>();
-   private QandAPanelContainer qap;
+   private CardPanel qap;
 
    // ==========================================================
    // Constructors
@@ -81,7 +81,7 @@ public class SessionContainer {
     * @throws SAXException
     * @throws ApplicationException
     */
-   public SessionContainer(Main main, DeckLoader deckLoader, File file, boolean toggle)
+   public SessionPanel(Main main, DeckLoader deckLoader, File file, boolean toggle)
          throws SAXException, ApplicationException {
 
       // Save the reference to the main program
@@ -106,7 +106,7 @@ public class SessionContainer {
 
       // Create a new session using this deck
 
-      this.session = new SessionImpl(deck);
+      this.session = new DeckSession(deck);
 
       // Create a new panel with a border layout
 
@@ -115,7 +115,7 @@ public class SessionContainer {
 
       // Add a Q&A panel in the center
 
-      this.qap = new QandAPanelContainer(this);
+      this.qap = new CardPanel(this);
       this.panel.add(this.qap.getComponent(), "Center");
 
       // Add a lower panel at the bottom
@@ -126,12 +126,12 @@ public class SessionContainer {
 
       // Add a button panel to the lower panel
 
-      this.bpc = new ButtonPanelContainer(this);
+      this.bpc = new ButtonPanel(this);
       lowerPanel.add(this.bpc.getComponent());
 
       // Add a status panel to the lower panel
 
-      this.spc = new StatusPanelContainer(this);
+      this.spc = new StatusBar(this);
       lowerPanel.add(this.spc.getComponent());
 
       // Start things up by firing a card change event and a session
@@ -211,9 +211,9 @@ public class SessionContainer {
     * <li>when it is marked right or wrong.
     * </ul>
     * @param listener the card change listener. This includes
-    *        {@link CardNumbersContainer},
-    *        {@link CardStatisticsContainer}, and
-    *        {@link QandAPanelContainer}.
+    *        {@link CardProgressPanel},
+    *        {@link CardStatsPanel}, and
+    *        {@link CardPanel}.
     */
    public void addCardChangeListener(CardChangeListener listener) {
       cardChangeListeners.add(listener);
@@ -228,8 +228,8 @@ public class SessionContainer {
     * <li>The "show answers" checkbox is selected or unselected</li>
     * </ul>
     * @param listener the session state change listener. This includes
-    *        {@link ButtonPanelContainer} {@link CardNumbersContainer}
-    *        {@link CardStatisticsContainer} {@link QandAPanelContainer}
+    *        {@link ButtonPanel} {@link CardProgressPanel}
+    *        {@link CardStatsPanel} {@link CardPanel}
     */
    public void addSessionStateChangeListener(SessionStateChangeListener listener) {
       sessionStateChangeListeners.add(listener);
@@ -238,7 +238,7 @@ public class SessionContainer {
    /**
     * Closes the file. Called when the <code>close</code> button is
     * clicked.
-    * @see StatisticsButtonContainer
+    * @see SummaryButtonPanel
     */
    public void close() {
       main.setFile(null, false);
@@ -248,7 +248,7 @@ public class SessionContainer {
     * When the user clicks the flip button, this method fires a session
     * state change event indicating that the session state has changed
     * to <code>SHOWING_ANSWER</code>.
-    * @see ButtonPanelContainer
+    * @see ButtonPanel
     */
    public void flip() {
       setSessionState(SessionState.SHOWING_ANSWER);
@@ -275,7 +275,7 @@ public class SessionContainer {
     * Convenience method that surfaces the main application frame so
     * that the question and answer panel can add a component listener to
     * handle resize events.
-    * @see QandAPanelContainer#QandAPanelContainer(SessionContainer)
+    * @see CardPanel#CardPanel(SessionPanel)
     */
    public JFrame getFrame() {
       return main.getFrame();
@@ -284,8 +284,8 @@ public class SessionContainer {
    /**
     * Called in a number of places by lower-level components to get the
     * contained session.
-    * @see CardNumbersContainer
-    * @see QandAPanelContainer
+    * @see CardProgressPanel
+    * @see CardPanel
     * @see StatisticsTable
     */
    public Session getSession() {
@@ -295,7 +295,7 @@ public class SessionContainer {
    /**
     * Called by the question and answer panel to determine the width of
     * the main frame, so that it can size itself accordingly
-    * @see QandAPanelContainer
+    * @see CardPanel
     */
    public int getWidth() {
       return main.getWidth();
@@ -368,7 +368,7 @@ public class SessionContainer {
    /**
     * Called at the end of a session if the "restart" button has been
     * clicked.
-    * @see StatisticsButtonContainer
+    * @see SummaryButtonPanel
     */
    public void restart() {
       final File file = main.getFile();
@@ -379,8 +379,8 @@ public class SessionContainer {
     * Sets the session state to either REVIEW_MODE (if the flag is true)
     * or ASKING_QUESTION (if the flag is false)
     * @param enabled a boolean flag
-    * @see ReviewModeCheckboxContainer#itemStateChanged(java.awt.event.ItemEvent)
-    * @see ReviewModeCheckboxContainer#ReviewModeCheckboxContainer(SessionContainer)
+    * @see ReviewModeCheckbox#itemStateChanged(java.awt.event.ItemEvent)
+    * @see ReviewModeCheckbox#ReviewModeCheckbox(SessionPanel)
     */
    public void setReviewMode(boolean enabled) {
       final SessionState newState = enabled
@@ -391,7 +391,7 @@ public class SessionContainer {
 
    /**
     * Displays statistics
-    * @see StatisticsPanelContainer
+    * @see SummaryPanel
     */
    public void displayStatistics() {
       cardChangeListeners.clear();
@@ -403,7 +403,7 @@ public class SessionContainer {
       container.validate();
       container.setVisible(true);
 
-      StatisticsPanelContainer ssp = new StatisticsPanelContainer(
+      SummaryPanel ssp = new SummaryPanel(
             this);
       container.add(ssp.getComponent(), "Center");
       container.validate();

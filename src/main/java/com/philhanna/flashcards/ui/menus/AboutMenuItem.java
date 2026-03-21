@@ -7,12 +7,12 @@ import com.philhanna.flashcards.ui.Main;
 /**
  * A menu item on the help menu that displays the help about dialog box to be displayed
  */
-public class AboutMenuItemContainer extends MenuItemContainer {
+public class AboutMenuItem extends AbstractMenuItem {
 
    /**
-    * Creates a new ResetMenuItemContainer
+    * Creates a new ResetSizeMenuItem
     */
-   public AboutMenuItemContainer(Main main) {
+   public AboutMenuItem(Main main) {
       super(main, MenuItems.ABOUT.getMenuItem());
    }
 

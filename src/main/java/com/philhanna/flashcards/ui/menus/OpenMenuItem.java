@@ -8,12 +8,12 @@ import com.philhanna.flashcards.ui.Main;
  * A menu item on the file menu that causes the open file dialog to be
  * displayed and a new session started
  */
-public class OpenMenuItemContainer extends MenuItemContainer {
+public class OpenMenuItem extends AbstractMenuItem {
 
    /**
-    * Creates a new OpenMenuItemContainer
+    * Creates a new OpenMenuItem
     */
-   public OpenMenuItemContainer(Main main) {
+   public OpenMenuItem(Main main) {
      super(main, MenuItems.OPEN.getMenuItem());
    }
 

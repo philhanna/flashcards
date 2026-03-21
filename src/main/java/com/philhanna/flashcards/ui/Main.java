@@ -12,16 +12,16 @@ import org.xml.sax.SAXException;
 
 import com.philhanna.flashcards.*;
 import com.philhanna.flashcards.deck.XmlDeckLoader;
-import com.philhanna.flashcards.ui.menus.MenuBarContainer;
+import com.philhanna.flashcards.ui.menus.AppMenuBar;
 
 /**
  * Entry point for flashcard program. This program creates the main application
  * frame and populates its menu bar and listeners. When a file is chosen from
  * the <code>File-&gt;Open</code> menu option , the program creates and starts a
- * <code>SessionContainer</code> for the file.
+ * <code>SessionPanel</code> for the file.
  * 
  * @see OpenDialogHandler
- * @see SessionContainer
+ * @see SessionPanel
  */
 public class Main {
 
@@ -56,7 +56,7 @@ public class Main {
    private final DeckLoader deckLoader = new XmlDeckLoader();
    private JFrame frame;
    private File file;
-   private SessionContainer sc;
+   private SessionPanel sc;
 
    // ==========================================================
    // Constructors
@@ -81,7 +81,7 @@ public class Main {
             doExit();
          }
       });
-      frame.setJMenuBar(new MenuBarContainer(this).getComponent());
+      frame.setJMenuBar(new AppMenuBar(this).getComponent());
       URL iconURL = super.getClass().getResource(
             Configuration.CARD_ICON_FILE_NAME);
       frame.setIconImage(new ImageIcon(iconURL).getImage());
@@ -114,7 +114,7 @@ public class Main {
     */
    private void startSession(File file, boolean toggle) {
       try {
-         sc = new SessionContainer(this, deckLoader, file, toggle);
+         sc = new SessionPanel(this, deckLoader, file, toggle);
          JPanel panel = this.sc.getComponent();
          frame.getContentPane().add(panel, "Center");
          frame.validate();

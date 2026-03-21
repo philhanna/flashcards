@@ -4,7 +4,7 @@ import com.philhanna.flashcards.ApplicationException;
 
 /**
  * Thrown while parsing an XML deck when a card is improperly formed.
- * @see DeckImpl#getCardsFromXML(org.w3c.dom.Document)
+ * @see XmlDeck#getCardsFromXML(org.w3c.dom.Document)
  */
 public class InvalidCardException extends ApplicationException {
    private static final long serialVersionUID = 1L;

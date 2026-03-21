@@ -8,7 +8,7 @@ import com.philhanna.flashcards.ui.Main;
  * Abstract base class for all menu containers. Handles the
  * {@link #getComponent()} method.
  */
-public abstract class MenuContainer {
+public abstract class AbstractMenu {
 
    protected final Main main;
    protected final JMenu menu;
@@ -16,7 +16,7 @@ public abstract class MenuContainer {
    /**
     * Default constructor
     */
-   public MenuContainer(Main main, JMenu menu) {
+   public AbstractMenu(Main main, JMenu menu) {
       super();
       this.main = main;
       this.menu = menu;

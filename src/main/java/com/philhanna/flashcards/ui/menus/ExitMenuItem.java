@@ -7,12 +7,12 @@ import com.philhanna.flashcards.ui.Main;
 /**
  * A menu item on the file menu that causes application to exit
  */
-public class ExitMenuItemContainer extends MenuItemContainer {
+public class ExitMenuItem extends AbstractMenuItem {
 
    /**
-    * Creates a new ExitMenuItemContainer
+    * Creates a new ExitMenuItem
     */
-   public ExitMenuItemContainer(Main main) {
+   public ExitMenuItem(Main main) {
       super(main, MenuItems.EXIT.getMenuItem());
    }
 

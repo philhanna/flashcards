@@ -8,12 +8,12 @@ import com.philhanna.flashcards.ui.Main;
  * A menu item on the view menu that causes the default window size and position
  * to be restored
  */
-public class ResetMenuItemContainer extends MenuItemContainer {
+public class ResetSizeMenuItem extends AbstractMenuItem {
 
    /**
-    * Creates a new ResetMenuItemContainer
+    * Creates a new ResetSizeMenuItem
     */
-   public ResetMenuItemContainer(Main main) {
+   public ResetSizeMenuItem(Main main) {
       super(main, MenuItems.RESET.getMenuItem());
    }
 

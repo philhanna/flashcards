@@ -12,17 +12,17 @@ import com.philhanna.flashcards.ui.events.SessionStateChangeListener;
 /**
  * A container for a check box that turns review mode on and off
  */
-public class ReviewModeCheckboxContainer implements ItemListener,
+public class ReviewModeCheckbox implements ItemListener,
       SessionStateChangeListener {
 
-   private SessionContainer sc;
+   private SessionPanel sc;
    private JCheckBox cb;
 
    /**
-    * Creates a new ReviewModeCheckboxContainer
+    * Creates a new ReviewModeCheckbox
     * @param sc
     */
-   public ReviewModeCheckboxContainer(SessionContainer sc) {
+   public ReviewModeCheckbox(SessionPanel sc) {
       this.sc = sc;
       sc.setReviewMode(false);
       this.cb = new JCheckBox("Review mode");

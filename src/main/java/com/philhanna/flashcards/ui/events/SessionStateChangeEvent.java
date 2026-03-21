@@ -2,7 +2,7 @@ package com.philhanna.flashcards.ui.events;
 
 import java.util.EventObject;
 
-import com.philhanna.flashcards.ui.SessionContainer;
+import com.philhanna.flashcards.ui.SessionPanel;
 import com.philhanna.flashcards.ui.SessionState;
 
 /**
@@ -20,7 +20,7 @@ public class SessionStateChangeEvent extends EventObject {
     * @param sessionState the new session state
     */
    public SessionStateChangeEvent(
-         SessionContainer source,
+         SessionPanel source,
          SessionState sessionState) {
       super(source);
       this.sessionState = sessionState;

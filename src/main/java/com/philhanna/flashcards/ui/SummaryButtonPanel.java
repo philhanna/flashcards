@@ -12,18 +12,18 @@ import com.philhanna.flashcards.ui.menus.MenuItems;
 /**
  * A container for a panel that has restart and close buttons
  */
-public class StatisticsButtonContainer {
+public class SummaryButtonPanel {
    
-   private SessionContainer sc;
+   private SessionPanel sc;
    private JPanel panel;
    private JButton btnRestart;
    private JButton btnClose;
 
    /**
-    * Creates a new StatisticsButtonContainer
+    * Creates a new SummaryButtonPanel
     * @param sc the session container
     */
-   public StatisticsButtonContainer(SessionContainer sc) {
+   public SummaryButtonPanel(SessionPanel sc) {
       this.sc = sc;
       this.panel = new JPanel();
       this.panel.add(createInnerPanel());
@@ -36,7 +36,7 @@ public class StatisticsButtonContainer {
       this.btnRestart = new JButton("Restart");
       this.btnRestart.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            StatisticsButtonContainer.this.sc.restart();
+            SummaryButtonPanel.this.sc.restart();
          }
       });
       panel.add(this.btnRestart);
@@ -44,7 +44,7 @@ public class StatisticsButtonContainer {
       this.btnClose = new JButton("Close");
       this.btnClose.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            StatisticsButtonContainer.this.sc.close();
+            SummaryButtonPanel.this.sc.close();
             MenuItems.EDIT.getMenuItem().setEnabled(false);
             MenuItems.RESTART.getMenuItem().setEnabled(false);
          }
@@ -56,7 +56,7 @@ public class StatisticsButtonContainer {
 
    /**
     * Returns the button panel to the statistics panel container
-    * @see StatisticsPanelContainer
+    * @see SummaryPanel
     */
    public Component getComponent() {
       return this.panel;

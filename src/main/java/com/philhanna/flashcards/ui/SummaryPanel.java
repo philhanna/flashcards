@@ -18,27 +18,27 @@ import javax.swing.JPanel;
  * The panel consists of an upper part with the table of statistics and
  * a button panel along the bottom.
  * @see StatisticsTable
- * @see StatisticsButtonContainer
+ * @see SummaryButtonPanel
  */
-public class StatisticsPanelContainer {
+public class SummaryPanel {
    private JPanel panel;
 
    /**
-    * Creates a new StatisticsPanelContainer
+    * Creates a new SummaryPanel
     * @param sc the session container
     */
-   public StatisticsPanelContainer(SessionContainer sc) {
+   public SummaryPanel(SessionPanel sc) {
       this.panel = new JPanel();
       this.panel.setBorder(BorderFactory
             .createTitledBorder("Session Statistics"));
       this.panel.setLayout(new BorderLayout());
       this.panel.add(new StatisticsTable(sc).getComponent(), "Center");
-      this.panel.add(new StatisticsButtonContainer(sc).getComponent(), "South");
+      this.panel.add(new SummaryButtonPanel(sc).getComponent(), "South");
    }
 
    /**
     * Returns the contained panel to the parent session container
-    * @see SessionContainer#displayStatistics()
+    * @see SessionPanel#displayStatistics()
     */
    public Component getComponent() {
       return this.panel;

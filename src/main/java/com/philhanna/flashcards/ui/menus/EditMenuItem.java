@@ -7,12 +7,12 @@ import com.philhanna.flashcards.ui.Main;
 /**
  * A menu item on the file menu that brings up the current file in a text editor
  */
-public class EditMenuItemContainer extends MenuItemContainer {
+public class EditMenuItem extends AbstractMenuItem {
 
    /**
-    * Creates a new RestartMenuItemContainer
+    * Creates a new RestartMenuItem
     */
-   public EditMenuItemContainer(Main main) {
+   public EditMenuItem(Main main) {
       super(main, MenuItems.EDIT.getMenuItem());
       this.menuItem.setEnabled(false);
    }

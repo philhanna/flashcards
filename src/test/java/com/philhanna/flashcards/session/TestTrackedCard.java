@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
 import com.philhanna.flashcards.*;
-import com.philhanna.flashcards.deck.CardImpl;
+import com.philhanna.flashcards.deck.BasicCard;
 
 /**
- * Unit tests for SessionCardImpl
+ * Unit tests for TrackedCard
  */
-public class TestSessionCardImpl extends BaseTest {
+public class TestTrackedCard extends BaseTest {
 
    // ==================================================================
    // Instance variables
@@ -24,7 +24,7 @@ public class TestSessionCardImpl extends BaseTest {
 
    @BeforeEach
    public void setUp() throws Exception {
-      card = new SessionCardImpl(new CardImpl("Who is buried in Grant's Tomb?", "Grant"));
+      card = new TrackedCard(new BasicCard("Who is buried in Grant's Tomb?", "Grant"));
    }
 
    // ==================================================================

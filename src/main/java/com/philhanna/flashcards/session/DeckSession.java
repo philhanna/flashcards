@@ -8,7 +8,7 @@ import com.philhanna.flashcards.*;
  * An implementation of {@link Session} that keeps track of viewed and unviewed
  * cards
  */
-public class SessionImpl implements Session {
+public class DeckSession implements Session {
 
    // ==========================================================
    // Instance variables
@@ -27,11 +27,11 @@ public class SessionImpl implements Session {
       }
 
       public int getUnviewedCardCount() {
-         return SessionImpl.this.unviewedCards.size();
+         return DeckSession.this.unviewedCards.size();
       }
 
       public int getViewedCardCount() {
-         return SessionImpl.this.viewedCards.size();
+         return DeckSession.this.viewedCards.size();
       }
    };
    private long startTime;
@@ -45,13 +45,13 @@ public class SessionImpl implements Session {
     * Creates a new default session implementation using the specified deck
     * @param deck the deck
     */
-   public SessionImpl(Deck deck) {
+   public DeckSession(Deck deck) {
 
       // For each card in the deck, create a session card for it and add
       // that session card to the list of cards not yet viewed
 
       for (Card card : deck.getCards()) {
-         unviewedCards.add(new SessionCardImpl(card));
+         unviewedCards.add(new TrackedCard(card));
       }
 
       // Now shuffle the deck
@@ -112,7 +112,7 @@ public class SessionImpl implements Session {
    /**
     * Rotates the unviewed cards by moving what would be the next card to be
     * viewed so that it is at the bottom of the deck. Used in the
-    * {@link SessionContainer#markWrong()} method.
+    * {@link SessionPanel#markWrong()} method.
     */
    public void rotate() {
       if (!unviewedCards.isEmpty())

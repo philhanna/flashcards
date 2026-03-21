@@ -33,7 +33,7 @@ import com.philhanna.flashcards.Deck;
  * <li>A {@link List} of the {@link Card} objects it contains</li>
  * </ul>
  */
-public class DeckImpl implements Deck {
+public class XmlDeck implements Deck {
 
    // ==========================================================
    // Constants and class variables
@@ -108,7 +108,7 @@ public class DeckImpl implements Deck {
             // Create a card object from the question and answer, and
             // add it to the card list
 
-            Card card = new CardImpl(question, answer);
+            Card card = new BasicCard(question, answer);
             list.add(card);
          }
       }
@@ -156,7 +156,7 @@ public class DeckImpl implements Deck {
     * Creates a new XML deck from an already-parsed XML file
     * @param doc a DOM that was parsed from an XML flashcard file
     */
-   public DeckImpl(Document doc) throws SAXException, ApplicationException {
+   public XmlDeck(Document doc) throws SAXException, ApplicationException {
       this.cards = getCardsFromXML(doc);
       this.title = getTitleFromXML(doc);
    }
@@ -167,7 +167,7 @@ public class DeckImpl implements Deck {
     * @throws SAXException
     * @throws ApplicationException
     */
-   public DeckImpl(File file) throws SAXException, ApplicationException {
+   public XmlDeck(File file) throws SAXException, ApplicationException {
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       DocumentBuilder db = null;
       Document doc = null;
@@ -209,7 +209,7 @@ public class DeckImpl implements Deck {
     */
    public void toggle() {
       for (Iterator<Card> it = this.cards.iterator(); it.hasNext();) {
-         CardImpl card = (CardImpl) it.next();
+         BasicCard card = (BasicCard) it.next();
          card.toggle();
       }
    }

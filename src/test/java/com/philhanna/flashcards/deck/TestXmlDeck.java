@@ -14,9 +14,9 @@ import org.xml.sax.SAXException;
 import com.philhanna.flashcards.*;
 
 /**
- * Unit tests for DeckImpl
+ * Unit tests for XmlDeck
  */
-public class TestDeckImpl extends BaseTest {
+public class TestXmlDeck extends BaseTest {
 
    // ==================================================================
    // Class constants and variables
@@ -54,7 +54,7 @@ public class TestDeckImpl extends BaseTest {
 
    @Test
    void getsCardsFromXML() throws SAXException, ApplicationException {
-      List<Card> cardList = DeckImpl.getCardsFromXML(doc);
+      List<Card> cardList = XmlDeck.getCardsFromXML(doc);
       assertNotNull(cardList);
       assertEquals("1928", cardList.get(0).getQuestion());
       assertEquals("Wings", cardList.get(0).getAnswer());
@@ -72,13 +72,13 @@ public class TestDeckImpl extends BaseTest {
    @Test
    void getsTitleFromXML() throws SAXException {
       final String expected = "Academy Award-winning Best Pictures";
-      final String actual = DeckImpl.getTitleFromXML(doc);
+      final String actual = XmlDeck.getTitleFromXML(doc);
       assertEquals(expected, actual);
    }
 
    @Test
    void getsCards() throws SAXException, ApplicationException {
-      final Deck deck = new DeckImpl(doc);
+      final Deck deck = new XmlDeck(doc);
       final List<Card> cardList = deck.getCards();
       final Card firstCard = cardList.get(0);
       final String actual = firstCard.getQuestion();
@@ -91,7 +91,7 @@ public class TestDeckImpl extends BaseTest {
       final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       final DocumentBuilder db = dbf.newDocumentBuilder();
       final Document emptyDoc = db.newDocument();
-      assertThrows(EmptyDeckException.class, () -> new DeckImpl(emptyDoc));
+      assertThrows(EmptyDeckException.class, () -> new XmlDeck(emptyDoc));
    }
 
    @Test
@@ -99,7 +99,7 @@ public class TestDeckImpl extends BaseTest {
       final Element elemCard = (Element) doc.getElementsByTagName("card").item(2);
       final Element elemQuestion = (Element) elemCard.getElementsByTagName("question").item(0);
       elemCard.removeChild(elemQuestion);
-      ApplicationException ex = assertThrows(ApplicationException.class, () -> new DeckImpl(doc));
+      ApplicationException ex = assertThrows(ApplicationException.class, () -> new XmlDeck(doc));
       assertEquals("No question found on card 3 in deck", ex.getMessage());
    }
 
@@ -108,13 +108,13 @@ public class TestDeckImpl extends BaseTest {
       final Element elemCard = (Element) doc.getElementsByTagName("card").item(2);
       final Element elemAnswer = (Element) elemCard.getElementsByTagName("answer").item(0);
       elemCard.removeChild(elemAnswer);
-      ApplicationException ex = assertThrows(ApplicationException.class, () -> new DeckImpl(doc));
+      ApplicationException ex = assertThrows(ApplicationException.class, () -> new XmlDeck(doc));
       assertEquals("No answer found on card 3 in deck", ex.getMessage());
    }
 
    @Test
    void getsTitle() throws SAXException, ApplicationException {
-      final Deck deck = new DeckImpl(doc);
+      final Deck deck = new XmlDeck(doc);
       final String expected = "Academy Award-winning Best Pictures";
       final String actual = deck.getTitle();
       assertEquals(expected, actual);
@@ -122,7 +122,7 @@ public class TestDeckImpl extends BaseTest {
 
    @Test
    void togglesEntireDeck() throws SAXException, ApplicationException {
-      final Deck deck = new DeckImpl(doc);
+      final Deck deck = new XmlDeck(doc);
       final List<Card> cardList = deck.getCards();
       final Card firstCard = cardList.get(0);
 

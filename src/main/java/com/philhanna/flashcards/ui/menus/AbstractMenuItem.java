@@ -11,7 +11,7 @@ import com.philhanna.flashcards.ui.Main;
  * {@link #getComponent()} method and sets up the action listener for the menu
  * item (which is implemented by subclasses).
  */
-public abstract class MenuItemContainer implements ActionListener {
+public abstract class AbstractMenuItem implements ActionListener {
 
    protected final Main main;
    protected final JMenuItem menuItem;
@@ -19,7 +19,7 @@ public abstract class MenuItemContainer implements ActionListener {
    /**
     * Default constructor
     */
-   public MenuItemContainer(Main main, JMenuItem menuItem) {
+   public AbstractMenuItem(Main main, JMenuItem menuItem) {
       super();
       this.main = main;
       this.menuItem = menuItem;

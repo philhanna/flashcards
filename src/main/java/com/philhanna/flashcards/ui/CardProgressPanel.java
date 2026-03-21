@@ -18,19 +18,19 @@ import javax.swing.JLabel;
  * session cursor.
  * @see SessionCursor
  */
-public class CardNumbersContainer implements SessionStateChangeListener,
+public class CardProgressPanel implements SessionStateChangeListener,
       CardChangeListener {
 
    private static final DecimalFormat SECONDS_FMT = new DecimalFormat("#0.##");
 
    private JLabel label;
-   private SessionContainer sc;
+   private SessionPanel sc;
 
    /**
-    * Creates a new CardNumbersContainer
+    * Creates a new CardProgressPanel
     * @param sc the session container
     */
-   public CardNumbersContainer(SessionContainer sc) {
+   public CardProgressPanel(SessionPanel sc) {
       this.sc = sc;
 
       this.label = new JLabel();

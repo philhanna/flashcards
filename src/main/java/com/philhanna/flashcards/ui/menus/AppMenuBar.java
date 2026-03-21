@@ -7,19 +7,19 @@ import com.philhanna.flashcards.ui.Main;
 /**
  * A container for the JMenuBar used by the user interface
  */
-public class MenuBarContainer {
+public class AppMenuBar {
    private JMenuBar mb;
 
    /**
-    * Creates a new MenuBarContainer
+    * Creates a new AppMenuBar
     * @param main
     */
-   public MenuBarContainer(Main main) {
+   public AppMenuBar(Main main) {
       mb = new JMenuBar();
-      mb.add(new FileMenuContainer(main).getComponent());
-      mb.add(new ViewMenuContainer(main).getComponent());
+      mb.add(new FileMenu(main).getComponent());
+      mb.add(new ViewMenu(main).getComponent());
       //mb.add(Box.createHorizontalGlue());
-      mb.add(new HelpMenuContainer(main).getComponent());
+      mb.add(new HelpMenu(main).getComponent());
    }
 
    /**

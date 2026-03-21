@@ -8,12 +8,12 @@ import com.philhanna.flashcards.ui.Main;
  * A menu item on the file menu that causes the deck to be started over from the
  * beginning in a new session
  */
-public class RestartMenuItemContainer extends MenuItemContainer {
+public class RestartMenuItem extends AbstractMenuItem {
 
    /**
-    * Creates a new RestartMenuItemContainer
+    * Creates a new RestartMenuItem
     */
-   public RestartMenuItemContainer(Main main) {
+   public RestartMenuItem(Main main) {
       super(main, MenuItems.RESTART.getMenuItem());
       this.menuItem.setEnabled(false);
    }

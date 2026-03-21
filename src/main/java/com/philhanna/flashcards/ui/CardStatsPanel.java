@@ -18,16 +18,16 @@ import com.philhanna.flashcards.ui.events.SessionStateChangeListener;
  * answered (the normal case), or it may have been missed one or more
  * times previously, or answered correctly.
  */
-public class CardStatisticsContainer implements SessionStateChangeListener,
+public class CardStatsPanel implements SessionStateChangeListener,
       CardChangeListener {
 
    private JLabel label;
 
    /**
-    * Creates a new CardStatisticsContainer
+    * Creates a new CardStatsPanel
     * @param sc the session container
     */
-   public CardStatisticsContainer(SessionContainer sc) {
+   public CardStatsPanel(SessionPanel sc) {
       this.label = new JLabel();
       sc.addSessionStateChangeListener(this);
       sc.addCardChangeListener(this);

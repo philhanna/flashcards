@@ -1,14 +1,14 @@
 package com.philhanna.flashcards.session;
 
 import com.philhanna.flashcards.*;
-import com.philhanna.flashcards.deck.CardImpl;
+import com.philhanna.flashcards.deck.BasicCard;
 
 /**
  * An implementation of the <code>SessionCard</code> interface that
  * combines the card functions (get question, get answer, toggle) with
  * the statistics-keeping required for a session.
  */
-public class SessionCardImpl extends CardImpl implements SessionCard {
+public class TrackedCard extends BasicCard implements SessionCard {
 
    // ==========================================================
    // Instance variables
@@ -24,15 +24,15 @@ public class SessionCardImpl extends CardImpl implements SessionCard {
 
    private CardStatistics statistics = new CardStatistics() {
       public CardHistory getHistory() {
-         return SessionCardImpl.this.lastAnswer;
+         return TrackedCard.this.lastAnswer;
       }
 
       public int getTimesAnsweredRight() {
-         return SessionCardImpl.this.timesAnsweredRight;
+         return TrackedCard.this.timesAnsweredRight;
       }
 
       public int getTimesAnsweredWrong() {
-         return SessionCardImpl.this.timesAnsweredWrong;
+         return TrackedCard.this.timesAnsweredWrong;
       }
    };
 
@@ -46,7 +46,7 @@ public class SessionCardImpl extends CardImpl implements SessionCard {
     * passed as a parameter.
     * @param card the card it contains
     */
-   public SessionCardImpl(Card card) {
+   public TrackedCard(Card card) {
       super(card.getQuestion(), card.getAnswer());
    }
 
