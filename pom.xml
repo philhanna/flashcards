@@ -40,6 +40,31 @@
           </archive>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>install-jar</id>
+            <phase>install</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <mkdir dir="${user.home}/.local/lib"/>
+                <mkdir dir="${user.home}/.local/bin"/>
+                <copy file="${project.build.directory}/${project.build.finalName}.jar"
+                      tofile="${user.home}/.local/lib/flashcards.jar"/>
+                <copy file="${project.basedir}/shell/flashcards"
+                      tofile="${user.home}/.local/bin/flashcards"/>
+                <chmod file="${user.home}/.local/bin/flashcards" perm="755"/>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 

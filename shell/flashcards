@@ -1,3 +1,3 @@
 #! /bin/bash
-java -jar ~/lib/fc2.jar "$@" &
+java -jar ~/.local/lib/flashcards.jar "$@" &
 
