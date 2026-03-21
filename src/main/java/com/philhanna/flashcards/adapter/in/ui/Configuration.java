@@ -39,10 +39,7 @@ public class Configuration {
       try {
          config.load(Configuration.class.getResourceAsStream("/sample.properties"));
       }
-      catch (IOException e) {
-         System.out.println("Could not load sample.properties from jar");
-         e.printStackTrace();
-      }
+      catch (IOException ignored) {}
 
       // Overlay with user config file if it exists
       File userConfig = getUserConfigFile();
@@ -50,10 +47,7 @@ public class Configuration {
          try (FileInputStream fis = new FileInputStream(userConfig)) {
             config.load(fis);
          }
-         catch (IOException e) {
-            System.out.println("Could not load user config: " + userConfig);
-            e.printStackTrace();
-         }
+         catch (IOException ignored) {}
       }
 
       DECK_FORMAT = config.getProperty("deck_format", "xml").toLowerCase();
@@ -80,10 +74,7 @@ public class Configuration {
       try (FileOutputStream fos = new FileOutputStream(file)) {
          config.store(fos, "Flashcards configuration");
       }
-      catch (IOException e) {
-         System.out.println("Could not save config: " + file);
-         e.printStackTrace();
-      }
+      catch (IOException ignored) {}
    }
 
    /**

@@ -70,9 +70,7 @@ public class Main {
       try {
          UIManager.setLookAndFeel(Configuration.LOOK_AND_FEEL);
       }
-      catch (Exception e) {
-         e.printStackTrace();
-      }
+      catch (Exception ignored) {}
       frame = new JFrame();
       frame.setTitle("Flashcards");
       frame.setBounds(getBounds());
@@ -256,8 +254,7 @@ public class Main {
          String path = Configuration.config.getProperty("directory", ".");
          return new File(path).getCanonicalFile();
       }
-      catch (IOException e) {
-         e.printStackTrace();
+      catch (IOException ignored) {
          return new File(".");
       }
    }
@@ -298,9 +295,7 @@ public class Main {
          File dir = canonical.isDirectory() ? canonical : canonical.getParentFile();
          Configuration.save("directory", dir.toString());
       }
-      catch (IOException e) {
-         e.printStackTrace();
-      }
+      catch (IOException ignored) {}
    }
 
    /**
