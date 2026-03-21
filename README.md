@@ -141,10 +141,11 @@ If no user config file is found, the bundled defaults are used.
 | Property | Default | Description |
 |---|---|---|
 | `deck_format` | `xml` | Storage format for card decks. `xml` opens `.xml` files; `sqlite` opens `.db` files. |
-| `x` | `100` | Initial horizontal position of the main window in pixels from the left of the screen. |
-| `y` | `100` | Initial vertical position of the main window in pixels from the top of the screen. |
-| `width` | `600` | Initial width of the main window in pixels. |
-| `height` | `400` | Initial height of the main window in pixels. |
+| `x` | `100` | Horizontal position of the main window in pixels from the left of the screen. Updated automatically when the window is closed. |
+| `y` | `100` | Vertical position of the main window in pixels from the top of the screen. Updated automatically when the window is closed. |
+| `width` | `600` | Width of the main window in pixels. Updated automatically when the window is closed. |
+| `height` | `400` | Height of the main window in pixels. Updated automatically when the window is closed. |
+| `directory` | `.` | Last directory visited in the open dialog. Updated automatically each time a deck is opened. |
 | `card_icon` | `/cardicon.png` | Classpath path to the window icon image. The default is bundled in the jar. |
 | `text_editor` | `gvim` | Command used to launch an external text editor when *Edit* is chosen from the menu. |
 | `look_and_feel` | `javax.swing.plaf.metal.MetalLookAndFeel` | Fully-qualified class name of the Swing look and feel. Supported values: `javax.swing.plaf.metal.MetalLookAndFeel`, `com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel`, `com.sun.java.swing.plaf.motif.MotifLookAndFeel`, `com.sun.java.swing.plaf.gtk.GTKLookAndFeel`. |

@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
-import java.util.prefs.Preferences;
 
 import javax.swing.*;
 
@@ -19,7 +18,7 @@ import com.philhanna.flashcards.adapter.in.ui.menus.AppMenuBar;
  * frame and populates its menu bar and listeners. When a file is chosen from
  * the <code>File-&gt;Open</code> menu option , the program creates and starts a
  * <code>SessionPanel</code> for the file.
- * 
+ *
  * @see OpenDialogHandler
  * @see SessionPanel
  */
@@ -93,27 +92,21 @@ public class Main {
    // Internal methods
    // ==========================================================
 
-   /**
-    * Returns a {@link java.awt.Rectangle} that describes the upper left corner,
-    * width, and length of a rectangle that will be centered on the screen. The
-    * width and length are based on whatever was saved the last time this
-    * program was run.
-    */
    private Rectangle getBounds() {
-      final int x = getLastX();
-      final int y = getLastY();
-      final int width = getLastWidth();
-      final int height = getLastHeight();
-      Rectangle r = new Rectangle(x, y, width, height);
-      return r;
+      int x      = Integer.parseInt(Configuration.config.getProperty("x",      String.valueOf(Configuration.X)));
+      int y      = Integer.parseInt(Configuration.config.getProperty("y",      String.valueOf(Configuration.Y)));
+      int width  = Integer.parseInt(Configuration.config.getProperty("width",  String.valueOf(Configuration.WIDTH)));
+      int height = Integer.parseInt(Configuration.config.getProperty("height", String.valueOf(Configuration.HEIGHT)));
+      return new Rectangle(x, y, width, height);
    }
 
-   /**
-    * Starts a new session with the specified file
-    * 
-    * @param file the file
-    * @param toggle true if deck should be turned over
-    */
+   private void saveWindowBounds() {
+      Configuration.save("x",      String.valueOf(frame.getX()));
+      Configuration.save("y",      String.valueOf(frame.getY()));
+      Configuration.save("width",  String.valueOf(frame.getWidth()));
+      Configuration.save("height", String.valueOf(frame.getHeight()));
+   }
+
    private void startSession(File file, boolean toggle) {
       try {
          sc = new SessionPanel(this, deckLoader, file, toggle);
@@ -126,42 +119,12 @@ public class Main {
       }
    }
 
-   /**
-    * Saves the x-position preference
-    */
-   private void setLastX() {
-      setLastX(frame.getX());
-   }
-
-   /**
-    * Saves the y-position preference
-    */
-   private void setLastY() {
-      setLastY(frame.getY());
-   }
-
-   /**
-    * Saves the height preference
-    */
-   private void setLastHeight() {
-      setLastHeight(frame.getHeight());
-   }
-
-   /**
-    * Saves the width preference
-    */
-   private void setLastWidth() {
-      setLastWidth(frame.getWidth());
-   }
-
    // ==========================================================
    // Instance methods
    // ==========================================================
 
    /**
     * Displays the specified error message in a message box
-    * 
-    * @param message the error message
     */
    public void displayErrorMessage(String message) {
       JOptionPane.showMessageDialog(this.frame, message, "Error",
@@ -169,24 +132,18 @@ public class Main {
    }
 
    /**
-    * Handles the <code>Exit</code> menu option, which saves the current width
-    * and height preferences and then disposes of the frame.
+    * Handles the <code>Exit</code> menu option, which saves the current window
+    * bounds to config.properties and then disposes of the frame.
     */
    public void doExit() {
       if (this.frame != null) {
-         setLastX();
-         setLastY();
-         setLastWidth();
-         setLastHeight();
+         saveWindowBounds();
          this.frame.dispose();
       }
    }
 
    /**
-    * Handles the <code>Open</code> menu option. This causes the
-    * {@link OpenDialogHandler#run} method to be called. If a file is selected,
-    * the {@link #setFile(File, boolean)} method will be called to start a new
-    * session with that file.
+    * Handles the <code>Open</code> menu option.
     */
    public void doOpen() {
       OpenDialogHandler od = new OpenDialogHandler(this);
@@ -218,23 +175,19 @@ public class Main {
    }
 
    /**
-    * Handles the <code>Reset side</code> menu option. This causes the frame to
-    * be set back to its default width and height, and saves those values in the
-    * preferences.
+    * Resets the window to the default bounds from config.properties.
     */
    public void doResetSize() {
-      setLastX(Configuration.X);
-      setLastY(Configuration.Y);
-      setLastWidth(Configuration.WIDTH);
-      setLastHeight(Configuration.HEIGHT);
+      Configuration.save("x",      String.valueOf(Configuration.X));
+      Configuration.save("y",      String.valueOf(Configuration.Y));
+      Configuration.save("width",  String.valueOf(Configuration.WIDTH));
+      Configuration.save("height", String.valueOf(Configuration.HEIGHT));
       frame.setBounds(getBounds());
    }
 
    /**
     * Switches the card display mode from showing the question to showing the
     * answer, and vice versa.
-    * 
-    * @param toggle if true, toggles the file
     */
    public void doToggle(boolean toggle) {
       setFile(this.file, toggle);
@@ -284,8 +237,6 @@ public class Main {
 
    /**
     * Returns the current file
-    * 
-    * @return the file
     */
    public File getFile() {
       return this.file;
@@ -306,61 +257,17 @@ public class Main {
    }
 
    /**
-    * Returns the path the directory containing the last deck that was used
+    * Returns the path to the directory containing the last deck that was used
     */
    public File getLastDirectory() {
-      File file = null;
       try {
-         Preferences node = Preferences.userNodeForPackage(Main.class);
-         String path = node.get("directory", ".");
-         file = new File(path).getCanonicalFile();
+         String path = Configuration.config.getProperty("directory", ".");
+         return new File(path).getCanonicalFile();
       }
       catch (IOException e) {
          e.printStackTrace();
+         return new File(".");
       }
-      return file;
-   }
-
-   /**
-    * Returns the x-position of the frame the last time it was saved
-    */
-   public int getLastX() {
-      final Preferences node = Preferences.userNodeForPackage(Main.class);
-      final String xString = node.get("x", String.valueOf(Configuration.X));
-      final int x = Integer.parseInt(xString);
-      return x;
-   }
-
-   /**
-    * Returns the y-position of the frame the last time it was saved
-    */
-   public int getLastY() {
-      final Preferences node = Preferences.userNodeForPackage(Main.class);
-      final String yString = node.get("y", String.valueOf(Configuration.Y));
-      final int y = Integer.parseInt(yString);
-      return y;
-   }
-
-   /**
-    * Returns the height of the frame the last time it was saved
-    */
-   public int getLastHeight() {
-      final Preferences node = Preferences.userNodeForPackage(Main.class);
-      final String heightString = node.get("height",
-            String.valueOf(Configuration.HEIGHT));
-      final int height = Integer.parseInt(heightString);
-      return height;
-   }
-
-   /**
-    * Returns the width of the frame the last time it was saved
-    */
-   public int getLastWidth() {
-      final Preferences node = Preferences.userNodeForPackage(Main.class);
-      final String widthString = node.get("width",
-            String.valueOf(Configuration.WIDTH));
-      final int width = Integer.parseInt(widthString);
-      return width;
    }
 
    /**
@@ -372,10 +279,6 @@ public class Main {
 
    /**
     * Starts a new session with the specified file
-    * 
-    * @param file the file
-    * @param toggle if true, toggles whether the question or answer side of the
-    *        card is shown
     */
    public void setFile(File file, boolean toggle) {
       this.file = file;
@@ -395,76 +298,23 @@ public class Main {
    }
 
    /**
-    * Remembers where the last deck was loaded from
-    * 
-    * @param file
+    * Saves the directory of the given file to config.properties
     */
    public void setLastDirectory(final File file) {
-      File newFile = null;
       try {
-         newFile = file.getCanonicalFile();
+         File canonical = file.getCanonicalFile();
+         File dir = canonical.isDirectory() ? canonical : canonical.getParentFile();
+         Configuration.save("directory", dir.toString());
       }
       catch (IOException e) {
          e.printStackTrace();
       }
-      if (!newFile.isDirectory())
-         newFile = newFile.getParentFile();
-      Preferences node = Preferences.userNodeForPackage(Main.class);
-      node.put("directory", newFile.toString());
-   }
-
-   /**
-    * Stores the specified x-position as the preference. Called internally with
-    * the current frame x-position.
-    * 
-    * @param x the preferred x-position
-    */
-   public void setLastX(int x) {
-      final Preferences node = Preferences.userNodeForPackage(Main.class);
-      node.put("x", String.valueOf(x));
-   }
-
-   /**
-    * Stores the specified y-position as the preference. Called internally with
-    * the current frame y-position.
-    * 
-    * @param y the preferred y-position
-    */
-   public void setLastY(int y) {
-      final Preferences node = Preferences.userNodeForPackage(Main.class);
-      node.put("y", String.valueOf(y));
-   }
-
-   /**
-    * Stores the specified height as the preference. Called internally with the
-    * current frame height.
-    * 
-    * @param height the preferred height
-    */
-   public void setLastHeight(int height) {
-      final Preferences node = Preferences.userNodeForPackage(Main.class);
-      node.put("height", String.valueOf(height));
-   }
-
-   /**
-    * Stores the specified width as the preference. Called internally with the
-    * current frame width.
-    * 
-    * @param width the preferred width
-    */
-   public void setLastWidth(int width) {
-      final Preferences node = Preferences.userNodeForPackage(Main.class);
-      node.put("width", String.valueOf(width));
    }
 
    /**
     * Sets the screen title to the specified string
-    * 
-    * @param title the screen title
     */
    public void setTitle(final String title) {
-      this.frame.setTitle(title == null
-            ? "Flashcards"
-            : title);
+      this.frame.setTitle(title == null ? "Flashcards" : title);
    }
 }

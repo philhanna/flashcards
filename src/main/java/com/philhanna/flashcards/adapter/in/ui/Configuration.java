@@ -2,6 +2,7 @@ package com.philhanna.flashcards.adapter.in.ui;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -16,6 +17,9 @@ import java.util.Properties;
  *   <li>Windows: {@code %APPDATA%\flashcards\config.properties}</li>
  *   <li>macOS: {@code ~/Library/Application Support/flashcards/config.properties}</li>
  * </ul>
+ * <p>
+ * Call {@link #save(String, String)} to persist a changed value back to the
+ * user config file.
  */
 public class Configuration {
 
@@ -60,6 +64,26 @@ public class Configuration {
       HEIGHT = Integer.parseInt(config.getProperty("height", "400"));
       TEXT_EDITOR = config.getProperty("text_editor", "gvim");
       LOOK_AND_FEEL = config.getProperty("look_and_feel", "javax.swing.plaf.metal.MetalLookAndFeel");
+   }
+
+   /**
+    * Updates a property in memory and writes the full config back to the user
+    * config file, creating it and its parent directory if necessary.
+    *
+    * @param key   the property key
+    * @param value the new value
+    */
+   public static void save(String key, String value) {
+      config.setProperty(key, value);
+      File file = getUserConfigFile();
+      file.getParentFile().mkdirs();
+      try (FileOutputStream fos = new FileOutputStream(file)) {
+         config.store(fos, "Flashcards configuration");
+      }
+      catch (IOException e) {
+         System.out.println("Could not save config: " + file);
+         e.printStackTrace();
+      }
    }
 
    /**
