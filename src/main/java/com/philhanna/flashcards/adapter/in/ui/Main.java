@@ -10,7 +10,7 @@ import javax.swing.*;
 
 import com.philhanna.flashcards.domain.*;
 import com.philhanna.flashcards.port.out.DeckLoader;
-import com.philhanna.flashcards.adapter.out.xml.XmlDeckLoader;
+import com.philhanna.flashcards.adapter.out.DeckLoaderFactory;
 import com.philhanna.flashcards.adapter.in.ui.menus.AppMenuBar;
 
 /**
@@ -52,7 +52,7 @@ public class Main {
    // Instance variables
    // ==========================================================
 
-   private final DeckLoader deckLoader = new XmlDeckLoader();
+   private DeckLoader deckLoader;
    private JFrame frame;
    private File file;
    private SessionPanel sc;
@@ -113,12 +113,13 @@ public class Main {
     */
    private void startSession(File file, boolean toggle) {
       try {
+         deckLoader = DeckLoaderFactory.forFile(file);
          sc = new SessionPanel(this, deckLoader, file, toggle);
          JPanel panel = this.sc.getComponent();
          frame.getContentPane().add(panel, "Center");
          frame.validate();
       }
-      catch (ApplicationException e) {
+      catch (ApplicationException | IllegalArgumentException e) {
          displayErrorMessage(e.getMessage());
       }
    }

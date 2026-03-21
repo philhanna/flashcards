@@ -25,6 +25,8 @@ import com.philhanna.flashcards.domain.ApplicationException;
 import com.philhanna.flashcards.domain.BasicCard;
 import com.philhanna.flashcards.domain.Card;
 import com.philhanna.flashcards.domain.Deck;
+import com.philhanna.flashcards.domain.EmptyDeckException;
+import com.philhanna.flashcards.domain.InvalidCardException;
 
 /**
  * An implementation of the <code>Deck</code> interface that reads a titled
