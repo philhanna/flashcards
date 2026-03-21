@@ -1,4 +1,4 @@
-# FlashCards2
+# FlashCards
 
 A Java Swing desktop application for studying flashcard decks. Originally designed for
 Jeopardy, Quiz Bowl, and similar trivia contests, but suitable for any subject where
@@ -6,7 +6,8 @@ question-and-answer memorization is useful.
 
 ## Features
 
-- **XML-based decks** — card decks are plain XML files you create and edit yourself
+- **XML or SQLite decks** — card decks are stored as plain XML files or SQLite databases;
+  the format is selected via `config.properties`
 - **Flip interaction** — each card shows a question; click *Flip* to reveal the answer
 - **Right / Wrong tracking** — mark each answer as right or wrong; missed cards are
   re-inserted and reshuffled into the remaining deck so you keep seeing them until you
@@ -24,6 +25,7 @@ question-and-answer memorization is useful.
 
 - Java 11 or later
 - Maven 3.x (to build from source)
+- Python 3 (optional — only needed to convert XML decks to SQLite)
 
 ## Building
 
@@ -31,28 +33,37 @@ question-and-answer memorization is useful.
 mvn package
 ```
 
-This produces `target/flashcards-1.0-SNAPSHOT.jar` with the main class embedded in the
-manifest.
+This produces `target/flashcards-1.0-SNAPSHOT.jar` as a self-contained fat jar with
+all dependencies (including the SQLite JDBC driver) bundled inside.
+
+## Installing
+
+```bash
+mvn install
+```
+
+Copies the jar to `~/.local/lib/flashcards.jar` and the launcher script to
+`~/.local/bin/flashcards`.
 
 ## Running
 
 ```bash
-java -jar target/flashcards-1.0-SNAPSHOT.jar
+flashcards [deckfile]
 ```
 
-Or copy the jar to a convenient location and use the provided launcher script:
+Or directly:
 
 ```bash
-# Copy the jar
-cp target/flashcards-1.0-SNAPSHOT.jar ~/lib/fc2.jar
-
-# Run via the shell script
-shell/flashcards
+java -jar target/flashcards-1.0-SNAPSHOT.jar [deckfile]
 ```
 
-## Deck file format
+## Deck file formats
 
-Decks are XML files with the following structure:
+The app supports two storage formats, controlled by the `deck_format` property in
+`config.properties`. Both formats represent the same data: a deck title and an ordered
+list of question/answer cards.
+
+### XML
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -71,29 +82,52 @@ Decks are XML files with the following structure:
 </cards>
 ```
 
-- The `<title>` element is displayed in the window title bar.
-- Every `<card>` must have both a `<question>` and an `<answer>`; the app will report
-  an error and refuse to load the deck if either is missing.
+### SQLite
+
+Each deck is a single `.db` file with the following schema:
+
+```sql
+CREATE TABLE deck (title TEXT NOT NULL);
+CREATE TABLE card (
+  id       INTEGER PRIMARY KEY AUTOINCREMENT,
+  question TEXT NOT NULL,
+  answer   TEXT NOT NULL,
+  position INTEGER NOT NULL DEFAULT 0
+);
+```
+
+To convert an existing XML deck to SQLite, use the included Python script:
+
+```bash
+python3 tools/xml_to_sqlite.py path/to/deck.xml
+# produces path/to/deck.db alongside the source file
+
+# convert a whole directory at once
+for f in /path/to/decks/*.xml; do
+    python3 tools/xml_to_sqlite.py "$f"
+done
+```
 
 ## Sample decks
 
-Several ready-to-use decks are included under `src/test/resources/`:
+Several ready-to-use decks are included under `src/test/resources/` in both formats:
 
-| File | Subject |
+| Deck | Subject |
 |---|---|
-| `Shakespeare.xml` | Shakespeare tragedies and comedies |
-| `Best_Picture_Awards.xml` | Academy Award Best Picture winners |
-| `Jane_Austen.xml` | Jane Austen novels |
-| `NBA.xml` | NBA trivia |
-| `Norse_Mythology.xml` | Norse mythology |
+| `Shakespeare` | Shakespeare tragedies and comedies |
+| `Best_Picture_Awards` | Academy Award Best Picture winners |
+| `Jane_Austen` | Jane Austen novels |
+| `NBA` | NBA trivia |
+| `Norse_Mythology` | Norse mythology |
 
 ## Configuration
 
-The file `src/main/resources/config.properties` controls the window position, size,
-text editor, and look-and-feel:
+Edit `src/main/resources/config.properties` before building, or replace
+`~/.local/lib/flashcards.jar` with a rebuild after changing settings.
 
 | Property | Default | Description |
 |---|---|---|
+| `deck_format` | `xml` | Storage format: `xml` or `sqlite` |
 | `x` | `100` | Initial window X position |
 | `y` | `100` | Initial window Y position |
 | `width` | `600` | Initial window width |
