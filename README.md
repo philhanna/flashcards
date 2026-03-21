@@ -42,8 +42,9 @@ all dependencies (including the SQLite JDBC driver) bundled inside.
 mvn install
 ```
 
-Copies the jar to `~/.local/lib/flashcards.jar` and the launcher script to
-`~/.local/bin/flashcards`.
+This copies the jar to `~/.local/lib/flashcards.jar`, the launcher script to
+`~/.local/bin/flashcards`, and — on first install only — places a default
+`config.properties` at `~/.config/flashcards/config.properties` for you to edit.
 
 ## Running
 
@@ -122,18 +123,31 @@ Several ready-to-use decks are included under `src/test/resources/` in both form
 
 ## Configuration
 
-Edit `src/main/resources/config.properties` before building, or replace
-`~/.local/lib/flashcards.jar` with a rebuild after changing settings.
+The app reads configuration from a `config.properties` file in the standard
+OS location for user configuration:
+
+| OS | Path |
+|---|---|
+| Linux | `~/.config/flashcards/config.properties` (or `$XDG_CONFIG_HOME/flashcards/config.properties`) |
+| Windows | `%APPDATA%\flashcards\config.properties` |
+| macOS | `~/Library/Application Support/flashcards/config.properties` |
+
+`mvn install` creates this file automatically on first install from the bundled
+`src/main/resources/sample.properties`. You can also create it manually by copying
+that file to the appropriate location above.
+
+If no user config file is found, the bundled defaults are used.
 
 | Property | Default | Description |
 |---|---|---|
-| `deck_format` | `xml` | Storage format: `xml` or `sqlite` |
-| `x` | `100` | Initial window X position |
-| `y` | `100` | Initial window Y position |
-| `width` | `600` | Initial window width |
-| `height` | `400` | Initial window height |
-| `text_editor` | `gvim` | Editor launched by the *Edit* menu item |
-| `look_and_feel` | `javax.swing.plaf.metal.MetalLookAndFeel` | Swing look and feel class |
+| `deck_format` | `xml` | Storage format for card decks. `xml` opens `.xml` files; `sqlite` opens `.db` files. |
+| `x` | `100` | Initial horizontal position of the main window in pixels from the left of the screen. |
+| `y` | `100` | Initial vertical position of the main window in pixels from the top of the screen. |
+| `width` | `600` | Initial width of the main window in pixels. |
+| `height` | `400` | Initial height of the main window in pixels. |
+| `card_icon` | `/cardicon.png` | Classpath path to the window icon image. The default is bundled in the jar. |
+| `text_editor` | `gvim` | Command used to launch an external text editor when *Edit* is chosen from the menu. |
+| `look_and_feel` | `javax.swing.plaf.metal.MetalLookAndFeel` | Fully-qualified class name of the Swing look and feel. Supported values: `javax.swing.plaf.metal.MetalLookAndFeel`, `com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel`, `com.sun.java.swing.plaf.motif.MotifLookAndFeel`, `com.sun.java.swing.plaf.gtk.GTKLookAndFeel`. |
 
 ## How a session works
 

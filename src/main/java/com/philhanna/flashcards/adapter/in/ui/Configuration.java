@@ -1,12 +1,21 @@
 package com.philhanna.flashcards.adapter.in.ui;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.philhanna.flashcards.adapter.in.ui.Main;
-
 /**
- * Contains configurable properties for the whole application
+ * Contains configurable properties for the whole application.
+ * <p>
+ * Defaults are loaded from {@code sample.properties} bundled in the jar.
+ * User overrides are loaded from the OS-appropriate config file:
+ * <ul>
+ *   <li>Linux: {@code $XDG_CONFIG_HOME/flashcards/config.properties}
+ *       (defaults to {@code ~/.config/flashcards/config.properties})</li>
+ *   <li>Windows: {@code %APPDATA%\flashcards\config.properties}</li>
+ *   <li>macOS: {@code ~/Library/Application Support/flashcards/config.properties}</li>
+ * </ul>
  */
 public class Configuration {
 
@@ -20,15 +29,29 @@ public class Configuration {
    public static final int WIDTH;
    public static final int HEIGHT;
    public static final String LOOK_AND_FEEL;
-   
+
    static {
+      // Load bundled defaults
       try {
-         config.load(Main.class.getResourceAsStream("/config.properties"));
+         config.load(Configuration.class.getResourceAsStream("/sample.properties"));
       }
       catch (IOException e) {
-         System.out.println("Could not load config.properties");
+         System.out.println("Could not load sample.properties from jar");
          e.printStackTrace();
       }
+
+      // Overlay with user config file if it exists
+      File userConfig = getUserConfigFile();
+      if (userConfig.exists()) {
+         try (FileInputStream fis = new FileInputStream(userConfig)) {
+            config.load(fis);
+         }
+         catch (IOException e) {
+            System.out.println("Could not load user config: " + userConfig);
+            e.printStackTrace();
+         }
+      }
+
       DECK_FORMAT = config.getProperty("deck_format", "xml").toLowerCase();
       CARD_ICON_FILE_NAME = config.getProperty("card_icon", "/cardicon.png");
       X = Integer.parseInt(config.getProperty("x", "50"));
@@ -37,5 +60,30 @@ public class Configuration {
       HEIGHT = Integer.parseInt(config.getProperty("height", "400"));
       TEXT_EDITOR = config.getProperty("text_editor", "gvim");
       LOOK_AND_FEEL = config.getProperty("look_and_feel", "javax.swing.plaf.metal.MetalLookAndFeel");
+   }
+
+   /**
+    * Returns the OS-appropriate user configuration file path.
+    */
+   public static File getUserConfigFile() {
+      String os = System.getProperty("os.name", "").toLowerCase();
+      String home = System.getProperty("user.home");
+
+      String configDir;
+      if (os.contains("win")) {
+         String appData = System.getenv("APPDATA");
+         configDir = (appData != null ? appData : home) + File.separator + "flashcards";
+      }
+      else if (os.contains("mac")) {
+         configDir = home + "/Library/Application Support/flashcards";
+      }
+      else {
+         // Linux / Unix — honour XDG_CONFIG_HOME
+         String xdg = System.getenv("XDG_CONFIG_HOME");
+         configDir = ((xdg != null && !xdg.isEmpty()) ? xdg : home + "/.config")
+               + "/flashcards";
+      }
+
+      return new File(configDir, "config.properties");
    }
 }

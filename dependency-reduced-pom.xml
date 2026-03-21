@@ -45,9 +45,11 @@
               <target>
                 <mkdir />
                 <mkdir />
+                <mkdir />
                 <copy />
                 <copy />
                 <chmod />
+                <copy />
               </target>
             </configuration>
           </execution>

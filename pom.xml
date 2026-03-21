@@ -74,11 +74,16 @@
               <target>
                 <mkdir dir="${user.home}/.local/lib"/>
                 <mkdir dir="${user.home}/.local/bin"/>
+                <mkdir dir="${user.home}/.config/flashcards"/>
                 <copy file="${project.build.directory}/${project.build.finalName}.jar"
                       tofile="${user.home}/.local/lib/flashcards.jar"/>
                 <copy file="${project.basedir}/shell/flashcards"
                       tofile="${user.home}/.local/bin/flashcards"/>
                 <chmod file="${user.home}/.local/bin/flashcards" perm="755"/>
+                <!-- Install default config only if one does not already exist -->
+                <copy file="${project.basedir}/src/main/resources/sample.properties"
+                      tofile="${user.home}/.config/flashcards/config.properties"
+                      overwrite="false"/>
               </target>
             </configuration>
           </execution>
