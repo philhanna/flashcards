@@ -8,8 +8,6 @@ import java.util.prefs.Preferences;
 
 import javax.swing.*;
 
-import org.xml.sax.SAXException;
-
 import com.philhanna.flashcards.domain.*;
 import com.philhanna.flashcards.port.out.DeckLoader;
 import com.philhanna.flashcards.adapter.out.xml.XmlDeckLoader;
@@ -119,9 +117,6 @@ public class Main {
          JPanel panel = this.sc.getComponent();
          frame.getContentPane().add(panel, "Center");
          frame.validate();
-      }
-      catch (SAXException e) {
-         displayErrorMessage(e.getMessage());
       }
       catch (ApplicationException e) {
          displayErrorMessage(e.getMessage());

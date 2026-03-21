@@ -13,4 +13,13 @@ public class ApplicationException extends Exception {
    public ApplicationException(String message) {
       super(message);
    }
+
+   /**
+    * Creates a new application exception with the specified detail message and cause
+    * @param message the detail message
+    * @param cause the underlying cause
+    */
+   public ApplicationException(String message, Throwable cause) {
+      super(message, cause);
+   }
 }

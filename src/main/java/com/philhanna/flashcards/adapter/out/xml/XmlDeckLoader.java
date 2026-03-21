@@ -14,7 +14,12 @@ import com.philhanna.flashcards.port.out.DeckLoader;
 public class XmlDeckLoader implements DeckLoader {
 
    @Override
-   public Deck load(File file) throws SAXException, ApplicationException {
-      return new XmlDeck(file);
+   public Deck load(File file) throws ApplicationException {
+      try {
+         return new XmlDeck(file);
+      }
+      catch (SAXException e) {
+         throw new ApplicationException("Failed to parse XML deck: " + file.getName(), e);
+      }
    }
 }

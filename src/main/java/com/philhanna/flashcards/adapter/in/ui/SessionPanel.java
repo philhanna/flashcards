@@ -7,8 +7,6 @@ import java.util.List;
 
 import javax.swing.*;
 
-import org.xml.sax.SAXException;
-
 import com.philhanna.flashcards.domain.*;
 import com.philhanna.flashcards.domain.session.*;
 import com.philhanna.flashcards.port.in.StudySessionUseCase;
@@ -80,11 +78,10 @@ public class SessionPanel {
     * answers.
     * @param main the main program
     * @param file the file to be opened
-    * @throws SAXException
     * @throws ApplicationException
     */
    public SessionPanel(Main main, DeckLoader deckLoader, File file, boolean toggle)
-         throws SAXException, ApplicationException {
+         throws ApplicationException {
 
       // Save the reference to the main program
 
