@@ -8,7 +8,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.w3c.dom.Document;
 
-import com.philhanna.flashcards.deck.XmlDeck;
+import com.philhanna.flashcards.domain.BaseTest;
+import com.philhanna.flashcards.domain.Deck;
+import com.philhanna.flashcards.adapter.out.xml.XmlDeck;
 
 /**
  * Abstract base class for unit tests that work with a loaded test deck
