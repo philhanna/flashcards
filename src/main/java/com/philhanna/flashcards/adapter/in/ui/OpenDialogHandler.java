@@ -33,18 +33,21 @@ public class OpenDialogHandler {
       // Create a file chooser initialized to this directory, and look
       // for .xml files
 
+      final boolean useSqlite = "sqlite".equals(Configuration.DECK_FORMAT);
+      final String ext = useSqlite ? ".db" : ".xml";
+      final String description = useSqlite ? "Flashcards (*.db)" : "Flashcards (*.xml)";
+
       JFileChooser fc = new JFileChooser(cwd);
       FileFilter filter = new FileFilter() {
 
          @Override
          public boolean accept(File file) {
-            return file.isDirectory()
-                  || file.getPath().endsWith(".xml");
+            return file.isDirectory() || file.getPath().endsWith(ext);
          }
 
          @Override
          public String getDescription() {
-            return "Flashcards (*.xml)";
+            return description;
          }
       };
       fc.setFileFilter(filter);

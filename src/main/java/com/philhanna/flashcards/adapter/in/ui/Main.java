@@ -10,7 +10,8 @@ import javax.swing.*;
 
 import com.philhanna.flashcards.domain.*;
 import com.philhanna.flashcards.port.out.DeckLoader;
-import com.philhanna.flashcards.adapter.out.DeckLoaderFactory;
+import com.philhanna.flashcards.adapter.out.xml.XmlDeckLoader;
+import com.philhanna.flashcards.adapter.out.sqlite.SqliteDeckLoader;
 import com.philhanna.flashcards.adapter.in.ui.menus.AppMenuBar;
 
 /**
@@ -52,7 +53,9 @@ public class Main {
    // Instance variables
    // ==========================================================
 
-   private DeckLoader deckLoader;
+   private final DeckLoader deckLoader = "sqlite".equals(Configuration.DECK_FORMAT)
+         ? new SqliteDeckLoader()
+         : new XmlDeckLoader();
    private JFrame frame;
    private File file;
    private SessionPanel sc;
@@ -113,13 +116,12 @@ public class Main {
     */
    private void startSession(File file, boolean toggle) {
       try {
-         deckLoader = DeckLoaderFactory.forFile(file);
          sc = new SessionPanel(this, deckLoader, file, toggle);
          JPanel panel = this.sc.getComponent();
          frame.getContentPane().add(panel, "Center");
          frame.validate();
       }
-      catch (ApplicationException | IllegalArgumentException e) {
+      catch (ApplicationException e) {
          displayErrorMessage(e.getMessage());
       }
    }
