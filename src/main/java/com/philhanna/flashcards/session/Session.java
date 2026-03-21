@@ -58,4 +58,10 @@ public interface Session {
     * Returns the number of times cards have been presented for viewing
     */
    public int getCardViewCount();
+
+   /**
+    * Records that a card has been presented for viewing.
+    * Called by the UI adapter each time a new card is displayed.
+    */
+   public void recordCardView();
 }

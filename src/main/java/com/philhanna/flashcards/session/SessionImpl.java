@@ -3,14 +3,12 @@ package com.philhanna.flashcards.session;
 import java.util.*;
 
 import com.philhanna.flashcards.*;
-import com.philhanna.flashcards.ui.*;
-import com.philhanna.flashcards.ui.events.*;
 
 /**
  * An implementation of {@link Session} that keeps track of viewed and unviewed
  * cards
  */
-public class SessionImpl implements Session, CardChangeListener {
+public class SessionImpl implements Session {
 
    // ==========================================================
    // Instance variables
@@ -142,7 +140,7 @@ public class SessionImpl implements Session, CardChangeListener {
    }
 
    @Override
-   public void cardChanged(CardChangeEvent event) {
+   public void recordCardView() {
       cardViewCount++;
    }
 }

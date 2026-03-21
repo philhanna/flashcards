@@ -10,7 +10,6 @@ import javax.swing.*;
 import org.xml.sax.SAXException;
 
 import com.philhanna.flashcards.*;
-import com.philhanna.flashcards.deck.*;
 import com.philhanna.flashcards.session.*;
 import com.philhanna.flashcards.ui.events.CardChangeEvent;
 import com.philhanna.flashcards.ui.events.CardChangeListener;
@@ -82,7 +81,7 @@ public class SessionContainer {
     * @throws SAXException
     * @throws ApplicationException
     */
-   public SessionContainer(Main main, File file, boolean toggle)
+   public SessionContainer(Main main, DeckLoader deckLoader, File file, boolean toggle)
          throws SAXException, ApplicationException {
 
       // Save the reference to the main program
@@ -96,7 +95,7 @@ public class SessionContainer {
 
       // Create a new deck object by parsing the specified XML file
 
-      Deck deck = new DeckImpl(file);
+      Deck deck = deckLoader.load(file);
       if (toggle) {
          deck.toggle();
       }
@@ -108,7 +107,6 @@ public class SessionContainer {
       // Create a new session using this deck
 
       this.session = new SessionImpl(deck);
-      addCardChangeListener((CardChangeListener) session);
 
       // Create a new panel with a border layout
 
@@ -167,6 +165,7 @@ public class SessionContainer {
     * Fires a card change event to all listeners
     */
    private void fireCardChange() {
+      session.recordCardView();
       SessionCard card = session.getCurrentCard();
       CardChangeEvent event = new CardChangeEvent(this, card);
       for (CardChangeListener listener : cardChangeListeners) {

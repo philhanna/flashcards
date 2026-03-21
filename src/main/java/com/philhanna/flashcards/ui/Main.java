@@ -11,6 +11,7 @@ import javax.swing.*;
 import org.xml.sax.SAXException;
 
 import com.philhanna.flashcards.*;
+import com.philhanna.flashcards.deck.XmlDeckLoader;
 import com.philhanna.flashcards.ui.menus.MenuBarContainer;
 
 /**
@@ -52,6 +53,7 @@ public class Main {
    // Instance variables
    // ==========================================================
 
+   private final DeckLoader deckLoader = new XmlDeckLoader();
    private JFrame frame;
    private File file;
    private SessionContainer sc;
@@ -112,7 +114,7 @@ public class Main {
     */
    private void startSession(File file, boolean toggle) {
       try {
-         sc = new SessionContainer(this, file, toggle);
+         sc = new SessionContainer(this, deckLoader, file, toggle);
          JPanel panel = this.sc.getComponent();
          frame.getContentPane().add(panel, "Center");
          frame.validate();
