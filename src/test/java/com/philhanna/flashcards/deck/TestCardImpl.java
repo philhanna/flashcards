@@ -1,10 +1,11 @@
 package com.philhanna.flashcards.deck;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
-import com.philhanna.flashcards.*;
+import com.philhanna.flashcards.BaseTest;
+import com.philhanna.flashcards.Card;
 
 /**
  * Unit tests for CardImpl
@@ -16,11 +17,11 @@ public class TestCardImpl extends BaseTest {
    // ==================================================================
 
    @Test
-   public void toggleSwitchesQuestionAndAnswer() {
+   void toggleSwitchesQuestionAndAnswer() {
       Card card = new CardImpl("111", "222");
       card.toggle();
-      assertEquals("Question is unexpected", "222", card.getQuestion());
-      assertEquals("Answer is unexpected", "111", card.getAnswer());
+      assertEquals("222", card.getQuestion(), "Question is unexpected");
+      assertEquals("111", card.getAnswer(), "Answer is unexpected");
    }
 
 }

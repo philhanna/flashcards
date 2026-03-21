@@ -5,7 +5,7 @@ import java.io.InputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.w3c.dom.Document;
 
 import com.philhanna.flashcards.deck.DeckImpl;
@@ -22,7 +22,7 @@ public abstract class BaseTestWithDeck extends BaseTest {
    private static final String TEST_DECK = "/Best_Picture_Awards.xml";
 
    // ==================================================================
-   // Constants and class variables
+   // Instance variables
    // ==================================================================
 
    protected Deck deck;
@@ -31,7 +31,7 @@ public abstract class BaseTestWithDeck extends BaseTest {
    // Fixtures
    // ==================================================================
 
-   @Before
+   @BeforeEach
    public void setUp() throws Exception {
       super.setUp();
       final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
