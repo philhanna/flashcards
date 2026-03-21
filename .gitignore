@@ -1,4 +1,4 @@
-build/
+target/
 bin/
 doc/
 .classpath
@@ -6,4 +6,3 @@ doc/
 .settings/
 *.class
 *.swp
-/.gradle/
