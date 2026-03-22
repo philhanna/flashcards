@@ -103,7 +103,7 @@ Port the pure-logic classes. No GUI or I/O dependencies. All Java interfaces bec
 
 ## Phase 5 — Configuration
 
-- [ ] `adapter/in_/ui/configuration.py` — `Configuration`:
+- [x] `adapter/in_/ui/configuration.py` — `Configuration`:
   - Load bundled `sample.properties` from package resources (`importlib.resources`)
   - Overlay with OS-appropriate user config file (XDG on Linux, `APPDATA` on Windows, `~/Library/Application Support` on macOS)
   - Use `configparser.ConfigParser` for reading/writing
