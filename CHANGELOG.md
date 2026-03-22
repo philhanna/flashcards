@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [3.0.0-beta.2] — 2026-03-22
+
+### Added
+- Unit tests for domain layer (`BasicCard`, `TrackedCard`, `DeckSession`)
+- Unit tests for use case layer (`StudySession`)
+- Unit tests for SQLite adapter (`SqliteDeckLoader`) using real `.db` fixtures
+- `design/` directory for design documents
+
+### Changed
+- Updated `LICENCE` year to 2026
+- Moved `conversion.md` to `design/`
+
+### Removed
+- `shell/` directory (Java artifact, no longer needed)
+
+---
+
 ## [3.0.0-beta.1] — 2026-03-22
 
 ### Changed
