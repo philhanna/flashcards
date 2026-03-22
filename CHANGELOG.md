@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Phase 4 use case layer: `port/study_session_use_case.py`, `usecase/study_session.py` — coordinates `Session` and `SessionCard` to implement mark-right/wrong, navigation
 - Phase 5 configuration: `adapter/driving/ui/configuration.py` — loads bundled `sample.properties` via `importlib.resources`, overlays OS-appropriate user config (XDG/APPDATA/Library), persists changes with `save()`
 - Phase 6 event system: `adapter/driving/ui/session_state.py` — `SessionState` enum; Java listener interfaces replaced by PyQt6 signals on `SessionPanel` (Phase 7)
+- Phase 7 UI layer: menus (`app_menu_bar`, `file_menu`, `view_menu`, `help_menu`), `main_window`, `session_panel`, `card_panel`, `button_panel`, `status_bar`, `card_stats_panel`, `card_progress_panel`, `review_mode_checkbox`, `statistics_table`, `summary_panel`, `summary_button_panel`, `open_dialog_handler`
 
 ---
 
