@@ -80,11 +80,11 @@ Port the pure-logic classes. No GUI or I/O dependencies. All Java interfaces bec
 
 ## Phase 3 — Persistence Layer
 
-- [ ] `port/deck_loader.py` — `DeckLoader(ABC)` with abstract `load(path: Path) -> Deck`
-- [ ] `adapter/out/sqlite/sqlite_deck.py` — `SqliteDeck(Deck)`:
+- [x] `port/deck_loader.py` — `DeckLoader(ABC)` with abstract `load(path: Path) -> Deck`
+- [x] `adapter/out/sqlite/sqlite_deck.py` — `SqliteDeck(Deck)`:
   - Constructor takes a `sqlite3.Connection`
   - Reads `deck` table for title, `card` table for questions/answers ordered by `position`
-- [ ] `adapter/out/sqlite/sqlite_deck_loader.py` — `SqliteDeckLoader(DeckLoader)`:
+- [x] `adapter/out/sqlite/sqlite_deck_loader.py` — `SqliteDeckLoader(DeckLoader)`:
   - Opens connection with `sqlite3.connect(path)` and returns `SqliteDeck`
   - Raises `ApplicationException` on missing file or bad schema
 
