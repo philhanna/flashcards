@@ -92,8 +92,8 @@ Port the pure-logic classes. No GUI or I/O dependencies. All Java interfaces bec
 
 ## Phase 4 — Use Case Layer
 
-- [ ] `port/study_session_use_case.py` — `StudySessionUseCase(ABC)`: `mark_right()`, `mark_wrong()`, `next_card()`, `previous_card()`, `session` property
-- [ ] `usecase/study_session.py` — `StudySession(StudySessionUseCase)`:
+- [x] `port/study_session_use_case.py` — `StudySessionUseCase(ABC)`: `mark_right()`, `mark_wrong()`, `next_card()`, `previous_card()`, `session` property
+- [x] `usecase/study_session.py` — `StudySession(StudySessionUseCase)`:
   - Wraps a `Session`
   - `mark_right()` → calls `session.next_card()` after recording
   - `mark_wrong()` → calls `session.rotate()` so the card re-queues
