@@ -32,10 +32,10 @@
 
 ## Phase 1 — Project Setup
 
-- [ ] Create `pyproject.toml` with project metadata (`name`, `version`, `requires-python = ">=3.11"`)
-- [ ] Add runtime dependency: `PyQt6`
-- [ ] Add dev dependencies: `pytest`, `pytest-qt`, `mypy`
-- [ ] Create package layout under `src/flashcards/`:
+- [x] Create `pyproject.toml` with project metadata (`name`, `version`, `requires-python = ">=3.11"`)
+- [x] Add runtime dependency: `PyQt6`
+- [x] Add dev dependencies: `pytest`, `pytest-qt`, `mypy`
+- [x] Create package layout under `src/flashcards/`:
   ```
   src/flashcards/
   ├── domain/
@@ -48,11 +48,11 @@
           └── menus/
   tests/
   ```
-- [ ] Add `__init__.py` files to every package, each with a dotted-name comment (e.g., `# flashcards.domain`)
-- [ ] Copy the five `.db` sample decks from `src/test/resources/` into `tests/resources/`
-- [ ] Copy `cardicon.png` into `src/flashcards/adapter/in_/ui/resources/`
-- [ ] Create `src/flashcards/adapter/in_/ui/resources/sample.properties` (port from `src/main/resources/`)
-- [ ] Verify `pytest` discovers and runs an empty test
+- [x] Add `__init__.py` files to every package, each with a dotted-name comment (e.g., `# flashcards.domain`)
+- [x] Copy the five `.db` sample decks from `src/test/resources/` into `tests/resources/`
+- [x] Copy `cardicon.png` into `src/flashcards/adapter/in_/ui/resources/`
+- [x] Create `src/flashcards/adapter/in_/ui/resources/sample.properties` (port from `src/main/resources/`)
+- [x] Verify `pytest` discovers and runs an empty test
 
 ---
 
