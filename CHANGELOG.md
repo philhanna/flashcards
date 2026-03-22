@@ -4,25 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [Unreleased] — Python + PyQt6 port (branch: python)
-
-### Added
-- `conversion.md` — phased plan for porting the application from Java + Swing to Python + PyQt6
-- Phase 1 scaffolding: `pyproject.toml`, Python package skeleton under `src/flashcards/`, `.venv`, sample decks copied to `tests/resources/`
-- Phase 2 domain layer: `exceptions`, `card_history`, `card_statistics`, `card`, `deck`, `session_cursor`, `session_card`, `tracked_card`, `session`, `deck_session` — pure Python with no GUI or I/O dependencies
-- Phase 3 persistence layer: `port/deck_loader.py`, `adapter/driven/sqlite/sqlite_deck.py`, `adapter/driven/sqlite/sqlite_deck_loader.py` — SQLite-backed `Deck` using stdlib `sqlite3`
-- Phase 4 use case layer: `port/study_session_use_case.py`, `usecase/study_session.py` — coordinates `Session` and `SessionCard` to implement mark-right/wrong, navigation
-- Phase 5 configuration: `adapter/driving/ui/configuration.py` — loads bundled `sample.properties` via `importlib.resources`, overlays OS-appropriate user config (XDG/APPDATA/Library), persists changes with `save()`
-- Phase 6 event system: `adapter/driving/ui/session_state.py` — `SessionState` enum; Java listener interfaces replaced by PyQt6 signals on `SessionPanel` (Phase 7)
-- Phase 8 entry point: `src/flashcards/__main__.py` — `flashcards` command launches `MainWindow`, optional path argument opens a deck directly
-- Phase 7 UI layer: menus (`app_menu_bar`, `file_menu`, `view_menu`, `help_menu`), `main_window`, `session_panel`, `card_panel`, `button_panel`, `status_bar`, `card_stats_panel`, `card_progress_panel`, `review_mode_checkbox`, `statistics_table`, `summary_panel`, `summary_button_panel`, `open_dialog_handler`
-
----
-
-## [2.1.1] — 2026-03-21
+## [3.0.0] — 2026-03-22
 
 ### Changed
-- Updated `pom.xml` build configuration
+- Ported entire application from Java + Swing to Python + PyQt6
+- Replaced Maven/`pom.xml` build with `pyproject.toml` (setuptools)
+- Replaced Swing UI components with PyQt6 equivalents (`QMainWindow`, `QWidget`, `QLabel`, etc.)
+- Replaced Java listener interfaces with PyQt6 signals (`pyqtSignal`)
+- Replaced `sqlite-jdbc` with stdlib `sqlite3`
+- Replaced JUnit 5 with pytest
+- Sample decks moved from `src/test/resources/` to `tests/resources/`
+
+### Removed
+- All Java source (`src/main/`, `src/test/`)
+- Maven artifacts (`pom.xml`, `dependency-reduced-pom.xml`, `target/`)
+- `tools/xml_to_sqlite.py` migration script
+- Swing look-and-feel configuration (`look_and_feel` property)
 
 ---
 

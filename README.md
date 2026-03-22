@@ -1,6 +1,6 @@
 # FlashCards
 
-A Java Swing desktop application for studying flashcard decks. Originally designed for
+A Python/PyQt6 desktop application for studying flashcard decks. Originally designed for
 Jeopardy, Quiz Bowl, and similar trivia contests, but suitable for any subject where
 question-and-answer memorization is useful.
 
@@ -16,33 +16,23 @@ question-and-answer memorization is useful.
 - **Session statistics** — at the end of a session the app displays a summary table
   showing how many times each card was answered right and wrong, plus the total
   elapsed time and card-view count
-- **Configurable look and feel** — supports Metal, Nimbus, Motif, and GTK themes via
-  `config.properties`
 
 ## Requirements
 
-- Java 11 or later
-- Maven 3.x (to build from source)
-- Python 3 (optional — only needed to convert legacy XML decks to SQLite)
-
-## Building
-
-```bash
-mvn package
-```
-
-This produces `target/flashcards-1.0-SNAPSHOT.jar` as a self-contained fat jar with
-all dependencies (including the SQLite JDBC driver) bundled inside.
+- Python 3.11 or later
+- PyQt6
 
 ## Installing
 
 ```bash
-mvn install
+pip install .
 ```
 
-This copies the jar to `~/.local/lib/flashcards.jar`, the launcher script to
-`~/.local/bin/flashcards`, and — on first install only — places a default
-`config.properties` at `~/.config/flashcards/config.properties` for you to edit.
+For development (includes pytest, mypy, etc.):
+
+```bash
+pip install -e ".[dev]"
+```
 
 ## Running
 
@@ -53,7 +43,7 @@ flashcards [deckfile]
 Or directly:
 
 ```bash
-java -jar target/flashcards-1.0-SNAPSHOT.jar [deckfile]
+python -m flashcards [deckfile]
 ```
 
 ## Deck format
@@ -70,23 +60,9 @@ CREATE TABLE card (
 );
 ```
 
-### Migrating from XML
-
-If you have existing XML decks, convert them with the included Python script:
-
-```bash
-python3 tools/xml_to_sqlite.py path/to/deck.xml
-# produces path/to/deck.db alongside the source file
-
-# convert a whole directory at once
-for f in /path/to/decks/*.xml; do
-    python3 tools/xml_to_sqlite.py "$f"
-done
-```
-
 ## Sample decks
 
-Several ready-to-use decks are included under `src/test/resources/`:
+Several ready-to-use decks are included under `tests/resources/`:
 
 | Deck | Subject |
 |---|---|
@@ -107,10 +83,6 @@ OS location for user configuration:
 | Windows | `%APPDATA%\flashcards\config.properties` |
 | macOS | `~/Library/Application Support/flashcards/config.properties` |
 
-`mvn install` creates this file automatically on first install from the bundled
-`src/main/resources/sample.properties`. You can also create it manually by copying
-that file to the appropriate location above.
-
 If no user config file is found, the bundled defaults are used.
 
 | Property | Default | Description |
@@ -120,9 +92,8 @@ If no user config file is found, the bundled defaults are used.
 | `width` | `600` | Width of the main window in pixels. Updated automatically when the window is closed. |
 | `height` | `400` | Height of the main window in pixels. Updated automatically when the window is closed. |
 | `directory` | `.` | Last directory visited in the open dialog. Updated automatically each time a deck is opened. |
-| `card_icon` | `/cardicon.png` | Classpath path to the window icon image. The default is bundled in the jar. |
+| `card_icon` | *(bundled)* | Path to the window icon image. |
 | `text_editor` | `gvim` | Command used to launch an external text editor when *Edit* is chosen from the menu. |
-| `look_and_feel` | `javax.swing.plaf.metal.MetalLookAndFeel` | Fully-qualified class name of the Swing look and feel. Supported values: `javax.swing.plaf.metal.MetalLookAndFeel`, `com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel`, `com.sun.java.swing.plaf.motif.MotifLookAndFeel`, `com.sun.java.swing.plaf.gtk.GTKLookAndFeel`. |
 
 ## How a session works
 
