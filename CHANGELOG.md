@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Phase 3 persistence layer: `port/deck_loader.py`, `adapter/driven/sqlite/sqlite_deck.py`, `adapter/driven/sqlite/sqlite_deck_loader.py` — SQLite-backed `Deck` using stdlib `sqlite3`
 - Phase 4 use case layer: `port/study_session_use_case.py`, `usecase/study_session.py` — coordinates `Session` and `SessionCard` to implement mark-right/wrong, navigation
 - Phase 5 configuration: `adapter/driving/ui/configuration.py` — loads bundled `sample.properties` via `importlib.resources`, overlays OS-appropriate user config (XDG/APPDATA/Library), persists changes with `save()`
+- Phase 6 event system: `adapter/driving/ui/session_state.py` — `SessionState` enum; Java listener interfaces replaced by PyQt6 signals on `SessionPanel` (Phase 7)
 
 ---
 

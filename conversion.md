@@ -116,9 +116,9 @@ Port the pure-logic classes. No GUI or I/O dependencies. All Java interfaces bec
 
 Replace Java `CardChangeListener` / `SessionStateChangeListener` with PyQt6 signals.
 
-- [ ] `adapter/driving/ui/session_state.py` — `SessionState(enum.Enum)`: `ASKING_QUESTION`, `SHOWING_ANSWER`, `REVIEW_MODE`, `SESSION_COMPLETE`
-- [ ] Define `card_changed = pyqtSignal(object)` and `session_state_changed = pyqtSignal(SessionState)` as signals on `SessionPanel` (a `QWidget` subclass)
-- [ ] Remove the separate `events/` package — signals replace `CardChangeEvent`, `CardChangeListener`, `SessionStateChangeEvent`, `SessionStateChangeListener`
+- [x] `adapter/driving/ui/session_state.py` — `SessionState(enum.Enum)`: `ASKING_QUESTION`, `SHOWING_ANSWER`, `REVIEW_MODE`, `SESSION_COMPLETE`
+- [x] Define `card_changed = pyqtSignal(object)` and `session_state_changed = pyqtSignal(SessionState)` as signals on `SessionPanel` (a `QWidget` subclass)
+- [x] Remove the separate `events/` package — signals replace `CardChangeEvent`, `CardChangeListener`, `SessionStateChangeEvent`, `SessionStateChangeListener`
 
 ---
 
