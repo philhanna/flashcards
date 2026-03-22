@@ -208,7 +208,7 @@ Each Java class becomes a `QWidget` subclass (or `QDialog` / `QAction` where app
 
 ## Phase 8 — Entry Point
 
-- [ ] `src/flashcards/__main__.py`:
+- [x] `src/flashcards/__main__.py`:
   ```python
   import sys
   from PyQt6.QtWidgets import QApplication
@@ -222,7 +222,7 @@ Each Java class becomes a `QWidget` subclass (or `QDialog` / `QAction` where app
       window.show()
       sys.exit(app.exec())
   ```
-- [ ] Add `[project.scripts] flashcards = "flashcards.__main__:main"` to `pyproject.toml`
+- [x] Add `[project.scripts] flashcards = "flashcards.__main__:main"` to `pyproject.toml`
 
 ---
 
