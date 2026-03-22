@@ -43,15 +43,15 @@
   ├── port/
   ├── usecase/
   └── adapter/
-      ├── out/sqlite/
-      └── in_/ui/
+      ├── driven/sqlite/
+      └── driving/ui/
           └── menus/
   tests/
   ```
 - [x] Add `__init__.py` files to every package, each with a dotted-name comment (e.g., `# flashcards.domain`)
 - [x] Copy the five `.db` sample decks from `src/test/resources/` into `tests/resources/`
-- [x] Copy `cardicon.png` into `src/flashcards/adapter/in_/ui/resources/`
-- [x] Create `src/flashcards/adapter/in_/ui/resources/sample.properties` (port from `src/main/resources/`)
+- [x] Copy `cardicon.png` into `src/flashcards/adapter/driving/ui/resources/`
+- [x] Create `src/flashcards/adapter/driving/ui/resources/sample.properties` (port from `src/main/resources/`)
 - [x] Verify `pytest` discovers and runs an empty test
 
 ---
@@ -81,10 +81,10 @@ Port the pure-logic classes. No GUI or I/O dependencies. All Java interfaces bec
 ## Phase 3 — Persistence Layer
 
 - [x] `port/deck_loader.py` — `DeckLoader(ABC)` with abstract `load(path: Path) -> Deck`
-- [x] `adapter/out/sqlite/sqlite_deck.py` — `SqliteDeck(Deck)`:
+- [x] `adapter/driven/sqlite/sqlite_deck.py` — `SqliteDeck(Deck)`:
   - Constructor takes a `sqlite3.Connection`
   - Reads `deck` table for title, `card` table for questions/answers ordered by `position`
-- [x] `adapter/out/sqlite/sqlite_deck_loader.py` — `SqliteDeckLoader(DeckLoader)`:
+- [x] `adapter/driven/sqlite/sqlite_deck_loader.py` — `SqliteDeckLoader(DeckLoader)`:
   - Opens connection with `sqlite3.connect(path)` and returns `SqliteDeck`
   - Raises `ApplicationException` on missing file or bad schema
 
@@ -103,7 +103,7 @@ Port the pure-logic classes. No GUI or I/O dependencies. All Java interfaces bec
 
 ## Phase 5 — Configuration
 
-- [x] `adapter/in_/ui/configuration.py` — `Configuration`:
+- [x] `adapter/driving/ui/configuration.py` — `Configuration`:
   - Load bundled `sample.properties` from package resources (`importlib.resources`)
   - Overlay with OS-appropriate user config file (XDG on Linux, `APPDATA` on Windows, `~/Library/Application Support` on macOS)
   - Use `configparser.ConfigParser` for reading/writing
@@ -116,7 +116,7 @@ Port the pure-logic classes. No GUI or I/O dependencies. All Java interfaces bec
 
 Replace Java `CardChangeListener` / `SessionStateChangeListener` with PyQt6 signals.
 
-- [ ] `adapter/in_/ui/session_state.py` — `SessionState(enum.Enum)`: `ASKING_QUESTION`, `SHOWING_ANSWER`, `REVIEW_MODE`, `SESSION_COMPLETE`
+- [ ] `adapter/driving/ui/session_state.py` — `SessionState(enum.Enum)`: `ASKING_QUESTION`, `SHOWING_ANSWER`, `REVIEW_MODE`, `SESSION_COMPLETE`
 - [ ] Define `card_changed = pyqtSignal(object)` and `session_state_changed = pyqtSignal(SessionState)` as signals on `SessionPanel` (a `QWidget` subclass)
 - [ ] Remove the separate `events/` package — signals replace `CardChangeEvent`, `CardChangeListener`, `SessionStateChangeEvent`, `SessionStateChangeListener`
 
@@ -137,7 +137,7 @@ Each Java class becomes a `QWidget` subclass (or `QDialog` / `QAction` where app
 
 ### 7b — Main Window
 
-- [ ] `adapter/in_/ui/main_window.py` — `MainWindow(QMainWindow)`:
+- [ ] `adapter/driving/ui/main_window.py` — `MainWindow(QMainWindow)`:
   - Constructor: set title, restore geometry from `Configuration`, set window icon
   - `closeEvent()` → save window geometry before closing
   - `do_open()`, `do_restart()`, `do_edit()`, `do_reset_size()`, `do_help_about()`
@@ -146,7 +146,7 @@ Each Java class becomes a `QWidget` subclass (or `QDialog` / `QAction` where app
 
 ### 7c — Session Panel
 
-- [ ] `adapter/in_/ui/session_panel.py` — `SessionPanel(QWidget)`:
+- [ ] `adapter/driving/ui/session_panel.py` — `SessionPanel(QWidget)`:
   - Signals: `card_changed = pyqtSignal(object)`, `session_state_changed = pyqtSignal(SessionState)`
   - Layout: `CardPanel` in center, lower `QVBoxLayout` with `ButtonPanel` + `StatusBar`
   - `flip()`, `mark_right()`, `mark_wrong()`, `next_card()`, `previous_card()`
@@ -156,7 +156,7 @@ Each Java class becomes a `QWidget` subclass (or `QDialog` / `QAction` where app
 
 ### 7d — Card Panel
 
-- [ ] `adapter/in_/ui/card_panel.py` — `CardPanel(QWidget)`:
+- [ ] `adapter/driving/ui/card_panel.py` — `CardPanel(QWidget)`:
   - Two `QLabel` areas (question top, answer bottom)
   - Connects to `session_panel.card_changed` and `session_panel.session_state_changed`
   - Hides answer label when state is `ASKING_QUESTION`; shows it on `SHOWING_ANSWER` / `REVIEW_MODE`
@@ -164,43 +164,43 @@ Each Java class becomes a `QWidget` subclass (or `QDialog` / `QAction` where app
 
 ### 7e — Button Panel
 
-- [ ] `adapter/in_/ui/button_panel.py` — `ButtonPanel(QWidget)`:
+- [ ] `adapter/driving/ui/button_panel.py` — `ButtonPanel(QWidget)`:
   - Three `QPushButton`s: Flip / Right / Wrong (labels and enabled state driven by session state)
   - Connects to `session_panel.session_state_changed`
   - Connects button clicks to `session_panel.flip()`, `.mark_right()`, `.mark_wrong()`
 
 ### 7f — Status Bar
 
-- [ ] `adapter/in_/ui/status_bar.py` — `StatusBar(QWidget)`:
+- [ ] `adapter/driving/ui/status_bar.py` — `StatusBar(QWidget)`:
   - `QLabel` showing "Card N of M"
   - Connects to `session_panel.card_changed` to refresh
 
 ### 7g — Card Stats and Progress Panels
 
-- [ ] `adapter/in_/ui/card_stats_panel.py` — `CardStatsPanel(QWidget)`:
+- [ ] `adapter/driving/ui/card_stats_panel.py` — `CardStatsPanel(QWidget)`:
   - Shows right/wrong counts for the current card
   - Connects to `session_panel.card_changed`
-- [ ] `adapter/in_/ui/card_progress_panel.py` — `CardProgressPanel(QWidget)`:
+- [ ] `adapter/driving/ui/card_progress_panel.py` — `CardProgressPanel(QWidget)`:
   - Shows overall session progress (viewed / total)
   - Connects to both `card_changed` and `session_state_changed`
 
 ### 7h — Summary / End-of-Session
 
-- [ ] `adapter/in_/ui/statistics_table.py` — `StatisticsTable`:
+- [ ] `adapter/driving/ui/statistics_table.py` — `StatisticsTable`:
   - Returns an HTML string (or builds a `QTableWidget`) summarising per-card right/wrong stats
   - Port `getStatisticsAsHTML(Session)` directly
-- [ ] `adapter/in_/ui/summary_panel.py` — `SummaryPanel(QWidget)`:
+- [ ] `adapter/driving/ui/summary_panel.py` — `SummaryPanel(QWidget)`:
   - Displays statistics table and elapsed time
   - Contains `SummaryButtonPanel`
-- [ ] `adapter/in_/ui/summary_button_panel.py` — `SummaryButtonPanel(QWidget)`:
+- [ ] `adapter/driving/ui/summary_button_panel.py` — `SummaryButtonPanel(QWidget)`:
   - Restart and Close `QPushButton`s
   - Connect to `session_panel.restart()` and `session_panel.close()`
 
 ### 7i — Review Mode and Open Dialog
 
-- [ ] `adapter/in_/ui/review_mode_checkbox.py` — `ReviewModeCheckbox(QCheckBox)`:
+- [ ] `adapter/driving/ui/review_mode_checkbox.py` — `ReviewModeCheckbox(QCheckBox)`:
   - `stateChanged` signal → `session_panel.set_review_mode(bool)`
-- [ ] `adapter/in_/ui/open_dialog_handler.py` — `OpenDialogHandler`:
+- [ ] `adapter/driving/ui/open_dialog_handler.py` — `OpenDialogHandler`:
   - Use `QFileDialog.getOpenFileName()` filtering `*.db`
   - Calls `main_window.set_file(path)` on selection
 
@@ -212,7 +212,7 @@ Each Java class becomes a `QWidget` subclass (or `QDialog` / `QAction` where app
   ```python
   import sys
   from PyQt6.QtWidgets import QApplication
-  from flashcards.adapter.in_.ui.main_window import MainWindow
+  from flashcards.adapter.driving.ui.main_window import MainWindow
 
   def main():
       app = QApplication(sys.argv)

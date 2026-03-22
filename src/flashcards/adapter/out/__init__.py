@@ -1,1 +1,0 @@
-# flashcards.adapter.out

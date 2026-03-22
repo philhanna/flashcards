@@ -1,4 +1,4 @@
-# flashcards.adapter.out.sqlite.sqlite_deck
+# flashcards.adapter.driven.sqlite.sqlite_deck
 
 import sqlite3
 from pathlib import Path

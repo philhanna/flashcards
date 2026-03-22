@@ -1,8 +1,8 @@
-# flashcards.adapter.out.sqlite.sqlite_deck_loader
+# flashcards.adapter.driven.sqlite.sqlite_deck_loader
 
 from pathlib import Path
 
-from flashcards.adapter.out.sqlite.sqlite_deck import SqliteDeck
+from flashcards.adapter.driven.sqlite.sqlite_deck import SqliteDeck
 from flashcards.domain.deck import Deck
 from flashcards.domain.exceptions import ApplicationException
 from flashcards.port.deck_loader import DeckLoader

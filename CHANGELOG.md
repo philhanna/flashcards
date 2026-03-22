@@ -10,9 +10,9 @@ All notable changes to this project will be documented in this file.
 - `conversion.md` — phased plan for porting the application from Java + Swing to Python + PyQt6
 - Phase 1 scaffolding: `pyproject.toml`, Python package skeleton under `src/flashcards/`, `.venv`, sample decks copied to `tests/resources/`
 - Phase 2 domain layer: `exceptions`, `card_history`, `card_statistics`, `card`, `deck`, `session_cursor`, `session_card`, `tracked_card`, `session`, `deck_session` — pure Python with no GUI or I/O dependencies
-- Phase 3 persistence layer: `port/deck_loader.py`, `adapter/out/sqlite/sqlite_deck.py`, `adapter/out/sqlite/sqlite_deck_loader.py` — SQLite-backed `Deck` using stdlib `sqlite3`
+- Phase 3 persistence layer: `port/deck_loader.py`, `adapter/driven/sqlite/sqlite_deck.py`, `adapter/driven/sqlite/sqlite_deck_loader.py` — SQLite-backed `Deck` using stdlib `sqlite3`
 - Phase 4 use case layer: `port/study_session_use_case.py`, `usecase/study_session.py` — coordinates `Session` and `SessionCard` to implement mark-right/wrong, navigation
-- Phase 5 configuration: `adapter/in_/ui/configuration.py` — loads bundled `sample.properties` via `importlib.resources`, overlays OS-appropriate user config (XDG/APPDATA/Library), persists changes with `save()`
+- Phase 5 configuration: `adapter/driving/ui/configuration.py` — loads bundled `sample.properties` via `importlib.resources`, overlays OS-appropriate user config (XDG/APPDATA/Library), persists changes with `save()`
 
 ---
 

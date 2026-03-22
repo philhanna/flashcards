@@ -1,4 +1,4 @@
-# flashcards.adapter.in_.ui.configuration
+# flashcards.adapter.driving.ui.configuration
 
 import configparser
 import importlib.resources
@@ -16,7 +16,7 @@ class Configuration:
 
         # Load bundled defaults from sample.properties
         sample = (
-            importlib.resources.files("flashcards.adapter.in_.ui")
+            importlib.resources.files("flashcards.adapter.driving.ui")
             .joinpath("resources")
             .joinpath("sample.properties")
         )
