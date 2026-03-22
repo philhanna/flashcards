@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [3.0.0] — 2026-03-22
+## [3.0.0-beta.1] — 2026-03-22
 
 ### Changed
 - Ported entire application from Java + Swing to Python + PyQt6
