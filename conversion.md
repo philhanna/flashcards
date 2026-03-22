@@ -60,16 +60,16 @@
 
 Port the pure-logic classes. No GUI or I/O dependencies. All Java interfaces become Python `ABC`s.
 
-- [ ] `domain/exceptions.py` — `ApplicationException`, `EmptyDeckException`, `InvalidCardException`
-- [ ] `domain/card_history.py` — `CardHistory(enum.Enum)` with `NEVER_ANSWERED`, `ANSWERED_RIGHT`, `ANSWERED_WRONG`
-- [ ] `domain/card_statistics.py` — `CardStatistics` dataclass (right/wrong counts per card)
-- [ ] `domain/card.py` — `Card(ABC)` with abstract `question`/`answer` properties; `BasicCard` concrete implementation
-- [ ] `domain/deck.py` — `Deck(ABC)` with abstract `title` property and `cards` sequence
-- [ ] `domain/session/session_cursor.py` — `SessionCursor(ABC)`: `total_card_count`, `unviewed_card_count`, `viewed_card_count`
-- [ ] `domain/session/session_card.py` — `SessionCard(ABC)`: exposes `Card` plus `CardStatistics` and `CardHistory`
-- [ ] `domain/session/tracked_card.py` — `TrackedCard(SessionCard)`: tracks right/wrong for a single `Card`
-- [ ] `domain/session/session.py` — `Session(ABC)`: `next_card()`, `previous_card()`, `current_card`, `cursor`, `rotate()`, `shuffle()`, `elapsed_time`, `card_view_count`, `record_card_view()`
-- [ ] `domain/session/deck_session.py` — `DeckSession(Session)`:
+- [x] `domain/exceptions.py` — `ApplicationException`, `EmptyDeckException`, `InvalidCardException`
+- [x] `domain/card_history.py` — `CardHistory(enum.Enum)` with `NEVER_ANSWERED`, `ANSWERED_RIGHT`, `ANSWERED_WRONG`
+- [x] `domain/card_statistics.py` — `CardStatistics` dataclass (right/wrong counts per card)
+- [x] `domain/card.py` — `Card(ABC)` with abstract `question`/`answer` properties; `BasicCard` concrete implementation
+- [x] `domain/deck.py` — `Deck(ABC)` with abstract `title` property and `cards` sequence
+- [x] `domain/session/session_cursor.py` — `SessionCursor(ABC)`: `total_card_count`, `unviewed_card_count`, `viewed_card_count`
+- [x] `domain/session/session_card.py` — `SessionCard(ABC)`: exposes `Card` plus `CardStatistics` and `CardHistory`
+- [x] `domain/session/tracked_card.py` — `TrackedCard(SessionCard)`: tracks right/wrong for a single `Card`
+- [x] `domain/session/session.py` — `Session(ABC)`: `next_card()`, `previous_card()`, `current_card`, `cursor`, `rotate()`, `shuffle()`, `elapsed_time`, `card_view_count`, `record_card_view()`
+- [x] `domain/session/deck_session.py` — `DeckSession(Session)`:
   - Two-stack model: `_unviewed: list[SessionCard]`, `_viewed: list[SessionCard]`
   - `shuffle()` using `random.shuffle`
   - `rotate()` moves top of `_unviewed` to bottom (index 0)
