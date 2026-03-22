@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QWidget
+from PyQt6.QtWidgets import QFrame, QHBoxLayout
 
 from flashcards.adapter.driving.ui.card_progress_panel import CardProgressPanel
 from flashcards.adapter.driving.ui.card_stats_panel import CardStatsPanel
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from flashcards.adapter.driving.ui.session_panel import SessionPanel
 
 
-class StatusBar(QWidget):
+class StatusBar(QFrame):
 
     def __init__(self, session_panel: SessionPanel) -> None:
         super().__init__(session_panel)
